@@ -4,7 +4,7 @@ Repositório para submissão da atividade supervisionada da disciplina de Integr
 
 ## Professor
 
-- [Rubens de Castro Pereira](rubenscp@gmail.com)
+- [Rubens de Castro Pereira](https://github.com/rubenscp)
 
 ## Grupo
 
