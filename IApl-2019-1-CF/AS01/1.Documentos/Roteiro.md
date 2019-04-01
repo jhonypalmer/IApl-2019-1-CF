@@ -14,4 +14,4 @@ tabelas com dados fictícios.
 documento “Intercâmbio de Informações entre Bancos e Empresas - Padrão FEBRABAN
 240 Posições” 
 
-> (Febraban - Layout padrao CNAB240 V 10 05 - 05_11_18.pdf) disponível em https://portal.febraban.org.br/pagina/3053/33/pt-br/layout-240
+> Disponível em [Febraban - Layout padrao CNAB240 V 10 05 - 05_11_18.pdf](https://portal.febraban.org.br/pagina/3053/33/pt-br/layout-240)
