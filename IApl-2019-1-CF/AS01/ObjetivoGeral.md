@@ -15,6 +15,5 @@ exercitar a integração por meio de Transferência de arquivo.
 |Tarefa|Data da Entrega ou Avaliação|
 |:---|:---:|
 |1. Estruturação da equipe e tema| 25/03/2019 |
-|2. Concepção do sistema de informação simplificado e execução da
-carga dos dados na base de dados| 01/04/2019|
+|2. Concepção do sistema de informação simplificado e execução da carga dos dados na base de dados| 01/04/2019|
 |3. Construção da Aplicação| 08/04/2019|
