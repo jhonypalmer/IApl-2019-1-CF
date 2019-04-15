@@ -9,4 +9,5 @@ Repositório para submissão da atividade supervisionada da disciplina de Integr
 ## Grupo
 
 - [Cleydson Junior](https://github.com/cleydsonjr)
+- [Isaias Tavares](https://github.com/isaiastavares)
 - [Jhony Palmer](https://github.com/jhonypalmer)
