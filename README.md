@@ -2,9 +2,9 @@
 
 Aplicação desenvolvida para pratica da materia de Integraçao de Aplicações, do curso de engenharia de Software da Universidade Federal de Goias. Semestre 01/2019.
 
-## Atividade Supervisionada 01 ([Roteiro] (AS01/1.Documentos/RoteiroAS01Documentos.md))
+## Atividade Supervisionada 01 ([Roteiro](AS01/RoteiroAS01.md))
 
-* [Lista de requisitos](AS01/1.Documentos/Requisitos.md)
+* [Lista de requisitos](AS01/1.Documentos/ListaRequisitos.md)
 * [Diagrama de classes de analise](AS01/1.Documentos/Diagrama.md)
 
 ## Integrantes

@@ -1,8 +1,8 @@
-package br.ufg.es.iapl.feriados.model
+package br.ufg.es.iapl.feriados.model.definition
 
 import java.time.LocalDate
 
-final class Computus implements HolidayDate {
+final class Computus implements DateDefinition {
 
 	public static final Computus COMPUTUS = new Computus()
 

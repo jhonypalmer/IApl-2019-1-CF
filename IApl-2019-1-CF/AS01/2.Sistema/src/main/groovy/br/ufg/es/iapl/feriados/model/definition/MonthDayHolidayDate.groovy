@@ -1,11 +1,11 @@
-package br.ufg.es.iapl.feriados.model
+package br.ufg.es.iapl.feriados.model.definition
 
 import java.time.LocalDate
 import java.time.Month
 import java.time.MonthDay
 
-class MonthDayHolidayDate implements HolidayDate {
-	public static final HolidayDate NEW_YEARS_DAY = new MonthDayHolidayDate(
+class MonthDayHolidayDate implements DateDefinition {
+	public static final DateDefinition NEW_YEARS_DAY = new MonthDayHolidayDate(
 			monthDay: MonthDay.of(Month.JANUARY, 1)
 	)
 

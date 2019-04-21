@@ -1,4 +1,4 @@
-package br.ufg.es.iapl.feriados.model
+package br.ufg.es.iapl.feriados.model.definition
 
 import java.time.DayOfWeek
 import java.time.LocalDate
@@ -6,7 +6,7 @@ import java.time.Month
 import java.time.YearMonth
 import java.time.temporal.TemporalAdjusters
 
-class RelativeDayOfWeekDate implements HolidayDate {
+class RelativeDayOfWeekDate implements DateDefinition {
 
 	int ordinal
 	DayOfWeek dayOfWeek

@@ -1,0 +1,67 @@
+@startuml
+abstract class Region {
+   name : String
+}
+
+class Country {
+   abbreviation : String
+}
+
+Region <|-- Country
+
+class State {
+   abbreviation : String
+   country : Country
+}
+
+Region <|-- State
+Country "1..*" o-- "1" State
+
+class City {
+   state : State
+}
+
+Region <|-- City
+State "1..*" o-- "1" City
+
+class Holiday {
+	region : Region
+	description : String
+	dateDefinition : DateDefinition
+}
+
+Region "1..*" o-- "1" Holiday
+Holiday "1" *-- "1" DateDefinition
+
+interface DateDefinition {
+	getDate(year : Integer) : LocalDate
+}
+
+class Computus {
+}
+
+DateDefinition <|-- Computus
+
+class HolidayRelativeDate {
+	holiday : Holiday
+	daysOffset : Integer
+}
+
+DateDefinition <|-- HolidayRelativeDate
+HolidayRelativeDate "1" -- Holiday
+
+class MonthDayHolidayDate {
+	monthDay : MonthDay
+}
+
+DateDefinition <|-- MonthDayHolidayDate
+
+class RelativeDayOfWeekDate {
+	ordinal : Integer
+	DayOfWeek dayOfWeek
+	Month month
+}
+
+DateDefinition <|-- RelativeDayOfWeekDate
+
+@enduml

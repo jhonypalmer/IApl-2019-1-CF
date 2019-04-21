@@ -1,8 +1,10 @@
-package br.ufg.es.iapl.feriados.model
+package br.ufg.es.iapl.feriados.model.definition
+
+import br.ufg.es.iapl.feriados.model.Holiday
 
 import java.time.LocalDate
 
-class HolidayRelativeDate implements HolidayDate {
+class HolidayRelativeDate implements DateDefinition {
 
 	Holiday holiday
 	int daysOffset
