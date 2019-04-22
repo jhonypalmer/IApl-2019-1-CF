@@ -4,11 +4,9 @@
 
 - **Manipular dados em formato JSON**.
 
-## II. Descrição
+## II. Roteiro
 
-1. A partir da aplicação construída na atividade supervisionada nr. 01 (AS01), crie novas funcionalidades para exportar e importar dados em formato JSON (JavaScript Object Notation).
-2. Para a exportação de dados em arquivo texto e utilizando o mesmo esquema da AS01, os conteúdos deverão estar em formato JSON a partir dos dados gravados no banco de dados da aplicação.
-3. Para a importação dos dados em formato JSON a partir de arquivos texto, gravar esses dados nas tabelas do banco de dados da aplicação.
+[Roteiro](2.Sistema/RoteiroAS02Sistema.md)
 
 ## III. Cronograma
 
