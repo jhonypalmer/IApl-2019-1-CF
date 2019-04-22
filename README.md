@@ -7,6 +7,11 @@ Aplicação desenvolvida para pratica da materia de Integraçao de Aplicações,
 * [Lista de requisitos](AS01/1.Documentos/ListaRequisitos.md)
 * [Diagrama de classes](AS01/1.Documentos/Diagrama.md)
 
+## Atividade Supervisionada 02 ([Roteiro](AS02/README.md))
+
+* [1.Documentos](AS02/1.Documentos)
+* [2.Sistema](AS02/1.Sistema)
+
 ## Integrantes
 
 - [Cleydson Junior](https://github.com/cleydsonjr)
