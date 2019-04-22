@@ -16,6 +16,7 @@ dados:
 3. Construção da Aplicação:
 
     Implementar em JAVA as classes de entidade, serviços e controle para promover a integração da aplicação, com o foco em dois resultados:
+    
     - [ ] 3.1. Resultado 1: produzir arquivo em formato texto (UTF-8) com campos posicionais, conforme esquema de integração dos dados definido pela equipe, a partir dos dados gerados no item 2.4.
     - [ ] 3.2. Resultado 2: ler arquivo em formato texto (UTF-8) conforme esquema de integração dos dados definido pela equipe, a partir dos dados gerados no item 2.4.
 
