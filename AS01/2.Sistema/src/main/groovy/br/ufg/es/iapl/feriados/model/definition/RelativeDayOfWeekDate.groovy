@@ -14,12 +14,13 @@ import java.time.temporal.TemporalAdjusters
 @CompileStatic
 class RelativeDayOfWeekDate extends DateDefinition {
 
+	@Column(nullable = true)
 	int ordinal
 
-	@Column
+	@Column(nullable = true)
 	DayOfWeek dayOfWeek
 
-	@Column
+	@Column(nullable = true)
 	Month month
 
 	@Override

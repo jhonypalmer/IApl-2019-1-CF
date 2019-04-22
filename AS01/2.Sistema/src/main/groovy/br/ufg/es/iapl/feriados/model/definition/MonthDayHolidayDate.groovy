@@ -17,9 +17,10 @@ class MonthDayHolidayDate extends DateDefinition {
 			dayOfMonth: 1,
 	)
 
-	@Column
+	@Column(nullable = true)
 	Month month
 
+	@Column(nullable = true)
 	int dayOfMonth
 
 	@Override

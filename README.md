@@ -6,6 +6,8 @@ Aplicação desenvolvida para pratica da materia de Integraçao de Aplicações,
 
 * [Lista de requisitos](AS01/1.Documentos/ListaRequisitos.md)
 * [Diagrama de classes](AS01/1.Documentos/Diagrama.md)
+* [Esquema do banco de dados postgres](AS01/2.Sistema/src/main/resources/ddl/database.sql)
+* [Carga das tabelas com dados](AS01/2.Sistema/src/main/groovy/br/ufg/es/iapl/feriados/service/DatabaseSeederService.groovy)
 
 ## Atividade Supervisionada 02 ([Roteiro](AS02/README.md))
 

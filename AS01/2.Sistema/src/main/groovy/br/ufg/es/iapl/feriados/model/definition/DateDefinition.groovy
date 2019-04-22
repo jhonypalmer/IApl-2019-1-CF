@@ -15,4 +15,5 @@ abstract class DateDefinition {
 	Long id
 
 	abstract LocalDate getDate(int year)
+
 }
