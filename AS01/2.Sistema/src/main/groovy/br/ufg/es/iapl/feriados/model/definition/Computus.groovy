@@ -1,8 +1,10 @@
 package br.ufg.es.iapl.feriados.model.definition
 
+import javax.persistence.Entity
 import java.time.LocalDate
 
-final class Computus implements DateDefinition {
+@Entity
+final class Computus extends DateDefinition {
 
 	public static final Computus COMPUTUS = new Computus()
 
