@@ -23,7 +23,8 @@ class City {
 }
 
 Region <|-- City
-State "1..*" o-- "1" City
+State "1..*" o-- "0..1" City
+Country "1..*" o-- "1" City
 
 class Holiday {
 	id : Long
