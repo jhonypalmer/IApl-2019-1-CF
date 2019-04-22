@@ -19,3 +19,5 @@
 ## IV. Documentos
 * [Lista de requisitos](1.Documentos/ListaRequisitos.md)
 * [Diagrama de classes de analise](1.Documentos/Diagrama.md)
+
+> Link da [Atividade Supervisionada 02](https://github.com/jhonypalmer/IApl-2019-1-CF/blob/master/AS02/2019-1%20-%20IApl%20-%20Atividade%20Supervisionada%20nr.%2002.pdf)
