@@ -1,4 +1,4 @@
-# Atividade Supervisionada (AS) – 2019-1
+# Atividade Supervisionada (AS01) – 2019-1
 
 ## I. Objetivo Geral
 
