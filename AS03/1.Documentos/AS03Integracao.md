@@ -110,3 +110,11 @@ GET /holiday/{id}
 ## Adicionando Feriados
 
 POST /holiday
+
+* É possível fazer a inserção utilizando os layouts JSON, XML e Posição Fixa. Para isso, basta identificar qual o layout desejado através do Header Content-Type. Ex.:
+
+JSON: Content-Type: application/json
+
+XML: Content-Type: application/xml
+
+Posição Fixa: Content-Type: application/fixedPosition
