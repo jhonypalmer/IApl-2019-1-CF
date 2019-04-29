@@ -3,10 +3,12 @@ package br.ufg.es.iapl.feriados.service
 import br.ufg.es.iapl.feriados.repository.HolidayCacheRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
+import org.springframework.test.context.ActiveProfiles
 import org.springframework.test.context.ContextConfiguration
 import spock.lang.Specification
 
 @ContextConfiguration
+@ActiveProfiles('test')
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class HolidayCacheServiceSpec extends Specification {
 

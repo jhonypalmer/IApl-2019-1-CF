@@ -133,7 +133,7 @@ public class FixedPositionConverter extends AbstractHttpMessageConverter<Holiday
             sb.append(StringUtils.rightPad(SIMPLE_DATE_FORMAT.format(date), 10, " "));
             sb.append(StringUtils.rightPad(holidayDTO.getCity() == null ? "" : holidayDTO.getCity(), 60, " "));
             sb.append(StringUtils.rightPad(holidayDTO.getState() == null ? "" : holidayDTO.getState(), 60, " "));
-            sb.append(StringUtils.rightPad(holidayDTO.getCountry() == null ? "" : holidayDTO.getCountry(), 60, " "));
+            sb.append(StringUtils.rightPad(holidayDTO.getCountry() == null ? "" : holidayDTO.getCountry(), 49, " "));
             sb.append("\n");
         }
 
