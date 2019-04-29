@@ -1,0 +1,41 @@
+
+
+## 1. Introdução
+
+Este documento apresenta um padrão de layout para troca de informações entre banco de dados(planilha eletrônica) 
+e o arquivo de integração de aplicações(documento de texto.
+Esta definição foi baseada no Padrão FEBRABAN 240 Posições, 
+a qual foi adotada para a Atividade Supervisionada 01 da disciplina de Integração de Aplicações 2019-1.
+
+Neste modelo de negócio, o usuário fará o cadastro de feriados no sistema, através do arquivo submetido, desde que esteja de 
+acordo com este padrão.
+
+O documento em questão tem o objetivo de descrever o arquivo de integração de aplicações feriados,
+que o usuário fará o cadastro do mesmo.
+
+## Entidade Participante
+
+- Feriados: Será composto por todos os feriados que foram cadastrados no sistema.
+
+## 2. Estrutura do Arquivo
+
+O Arquivo de troca de informações dos Feriados é composto de um registro header de arquivo, 
+um ou mais lotes de Feriados e um registro trailer de arquivo, conforme ilustra a figura abaixo:
+
+Com a estrutura apresentada, um único arquivo pode conter vários lotes de Feriados distintos. 
+Este procedimento, que permite com que os Feriados consolidem em um só arquivo todas as informações.
+
+### Observações
+
+#### Tamanho do arquivo
+
+O arquivo tem um tamanho total de 305 bytes.
+
+#### Alinhamento dos campos
+
+- Campos numéricos (Num): sempre à direita e preenchidos com zeros (0) à esquerda.
+- Campos alfanuméricos (Alfa): Sempre à esquerda e preenchidos com espaços em branco à direita.
+
+Lotes de Feriados
+Cada feriado pode ser relativo a um país ou vários países diferentes (no máximo 20), informando qual o COD 
+(identificador único de cada feriado) do feriado. assim como mostra a tabela a seguir:

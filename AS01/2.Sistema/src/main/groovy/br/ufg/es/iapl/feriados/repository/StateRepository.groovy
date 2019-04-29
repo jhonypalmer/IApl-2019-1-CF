@@ -11,4 +11,5 @@ import org.springframework.stereotype.Repository
 interface StateRepository extends JpaRepository<State, Long> {
 
 	State findByCountryAndName(Country country, String name)
+
 }

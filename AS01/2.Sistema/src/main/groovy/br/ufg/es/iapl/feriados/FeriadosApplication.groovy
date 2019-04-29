@@ -22,6 +22,7 @@ class FeriadosApplication {
 	@PostConstruct
 	private void init() {
 		databaseSeederService.seedRegions()
+//		databaseSeederService.seedHolidays()
 	}
 
 }
