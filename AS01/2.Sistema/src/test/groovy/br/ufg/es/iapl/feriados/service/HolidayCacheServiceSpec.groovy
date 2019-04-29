@@ -1,6 +1,6 @@
 package br.ufg.es.iapl.feriados.service
 
-
+import br.ufg.es.iapl.feriados.repository.HolidayCacheRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.test.context.ContextConfiguration
@@ -12,6 +12,9 @@ class HolidayCacheServiceSpec extends Specification {
 
 	@Autowired
 	HolidayCacheService holidayCacheService
+
+	@Autowired
+	HolidayCacheRepository holidayCacheRepository
 
 	def 'Deve criar o arquivo posicional corretamente'() {
 		setup:
@@ -28,17 +31,14 @@ class HolidayCacheServiceSpec extends Specification {
 	}
 
 	def 'Deve ler o arquivo posicional corretamente'() {
-		setup:
-		holidayCacheService.buildHolidayCache(2019)
-
 		when:
-		String positionalFile = holidayCacheService.buildPositionalFile()
+		holidayCacheService.importPositionalFile(positionalFile)
 
 		then:
-		positionalFile == expectedFile
+		holidayCacheRepository.findAll().size() == 11
 
 		where:
-		expectedFile = this.class.getResource('/positional.txt').text
+		positionalFile = this.class.getResource('/positional.txt').text
 	}
 
 }
