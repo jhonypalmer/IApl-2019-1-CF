@@ -1,6 +1,7 @@
 package br.ufg.es.iapl.feriados
 
 import br.ufg.es.iapl.feriados.service.DatabaseSeederService
+import br.ufg.es.iapl.feriados.service.HolidayCacheService
 import groovy.transform.CompileStatic
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.SpringApplication
@@ -15,6 +16,9 @@ class FeriadosApplication {
 	@Autowired
 	DatabaseSeederService databaseSeederService
 
+	@Autowired
+	HolidayCacheService holidayCacheService
+
 	static void main(String[] args) {
 		SpringApplication.run(FeriadosApplication, args)
 	}
@@ -22,7 +26,7 @@ class FeriadosApplication {
 	@PostConstruct
 	private void init() {
 		databaseSeederService.seedRegions()
-//		databaseSeederService.seedHolidays()
+		databaseSeederService.seedHolidays()
 	}
 
 }

@@ -19,6 +19,7 @@ import org.apache.commons.csv.CSVRecord
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 
+import javax.transaction.Transactional
 import java.time.Month
 
 @Service
@@ -37,6 +38,7 @@ class DatabaseSeederService {
 	@Autowired
 	HolidayRepository holidayRepository
 
+	@Transactional
 	void seedRegions() {
 		if (cityRepository.count() != 0) {
 			return
@@ -89,10 +91,9 @@ class DatabaseSeederService {
 			)
 			cityRepository.save(city)
 		}
-
-		countryRepository.findByAbbreviation('')
 	}
 
+	@Transactional
 	void seedHolidays() {
 		if (holidayRepository.count() != 0) {
 			return
@@ -108,7 +109,7 @@ class DatabaseSeederService {
 			String cityName = record.get('city')
 			String description = record.get('description')
 			String type = record.get('type')
-			Integer month = record.get('month').toInteger()
+			Integer month = record.get('month') ? record.get('month').toInteger() : null
 			Integer dayOfMonth = record.get('dayOfMonth') ? record.get('dayOfMonth').toInteger() : null
 			Integer dayOfWeek = record.get('dayOfWeek') ? record.get('dayOfWeek').toInteger() : null
 			Integer ordinal = record.get('ordinal') ? record.get('ordinal').toInteger() : null

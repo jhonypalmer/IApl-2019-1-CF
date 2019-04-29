@@ -33,7 +33,7 @@ class Holiday {
 	dateDefinition : DateDefinition
 }
 
-Region "1..*" o-- "1" Holiday
+Region "0..*" o-- "1" Holiday
 Holiday "1" *-- "1" DateDefinition
 
 abstract class DateDefinition {
@@ -67,5 +67,14 @@ class RelativeDayOfWeekDate {
 }
 
 DateDefinition <|-- RelativeDayOfWeekDate
+
+class HolidayCache {
+	id : Long
+	region : Region
+	description : String
+	date : LocalDate
+}
+
+Region "0..*" o-- "1" HolidayCache
 
 @enduml

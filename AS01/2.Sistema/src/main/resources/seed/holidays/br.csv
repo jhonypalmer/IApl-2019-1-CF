@@ -1,8 +1,8 @@
 country,state,city,description,type,month,dayOfMonth,dayOfWeek,ordinal,holiday,daysOffset
 BR,,,Confraternização Universal,MonthDayHoliday,1,1,,,,
 BR,,,Páscoa,Computus,,,,,,
-BR,,,Carnaval,HolidayRelative,,,-47,,Páscoa,
-BR,,,Paixão de Cristo,HolidayRelative,,,-3,,Páscoa,
+BR,,,Carnaval,HolidayRelative,,,,,Páscoa,-47
+BR,,,Paixão de Cristo,HolidayRelative,,,,,Páscoa,-3
 BR,,,Tiradentes,MonthDayHoliday,4,21,,,,
 BR,,,Dia do Trabalho,MonthDayHoliday,5,1,,,,
 BR,,,Corpus Christi,MonthDayHoliday,6,20,,,,
