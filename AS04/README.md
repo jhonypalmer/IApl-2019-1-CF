@@ -6,14 +6,14 @@
 
 ## II. Descrição
 
-### I. Definições Gerais
+### 1. Definições Gerais
 
 - [ ] 1.1. Reutilizar todas as definições, modelagem e implementações das atividades supervisionadas nº 1, 2, e 3.
 - [ ] 1.2. Construir sistema de informação Web implementando os requisitos funcionais já definidos.
 - [ ] 1.3. O sistema deverá apresentar um menu com as opções de acesso às funcionalidades.
 - [ ] 1.4. O sistema deverá ser hospedado no servidor de apoio da disciplina cujas tecnologias recomendadas são JAVA EE e PostgreSql. Caso utilize tecnologias diferentes dessas recomendadas, a equipe de alunos fica responsável por criar toda a infraestrutura de hospedagem do sistema Web nesse servidor.
 
-### II. Requisitos Funcionais:
+### 2. Requisitos Funcionais:
 
 - [ ] 2.1. Acesso ao sistema por meio de login informando um endereço de e-mail e senha.
 - [ ] 2.2. Cadastros:
@@ -29,18 +29,18 @@
     * Caso haja erros na execução dos serviços, um objeto genérico de erro deverá ser enviado como resposta.
     * Elaborar mecanismo para informar às equipes a forma de se consumir os serviços web.
   - [ ] 2.3.3. Consumidor 
-    * Todos os serviços web disponíveis pelo produtor deverão ser consumidos (utilizados) sendo necessário construir todas as interfaces homem-computador relativas aos serviços web disponibilizando ao usuário.
+    * Todos os serviços web disponíveis pelo produtor deverão ser consumidos (utilizados) sendo necessário construir todas as interfaces homem-computador relativas aos serviços web disponibilizando ao usuário.2. Observação dos requisitos não-funcionais nr. 3.1, 3.2, 3.3, 3.4, 3.5, 3.6 e 3.7 implementados nas tecnologias escolhidas (linguagem e SGBD).apresentação ao professor
     * Caso haja erros na execução dos serviços, um objeto genérico de erro deverá ser recebido como resposta e apresentado ao usuário.
-    * NOTA: O sistema a ser integrado por cada equipe está definido na seção “Sistemas a serem integrados”.
+    * NOTA: O sistem2. Observação dos requisitos não-funcionais nr. 3.1, 3.2, 3.3, 3.4, 3.5, 3.6 e 3.7 implementados nas tecnologias escolhidas (linguagem e SGBD).apresentação ao professora a ser integrado por cada equipe está definido na seção “Sistemas a serem integrados”.
 
-### III. Requisitos Não-Funcionais:
+### 3. Requisitos Não-Funcionais:
 
 - [ ] 3.1. O sistema de informação deve estar preparado para apresentar sua interface homemcomputador
 em vários idiomas, isto é, deve ser implementada a internacionalização.
 - [ ] 3.2. Todas as situações que ocorrerem interação com usuário deverão ter mensagens de erro,
 advertência ou informativa.
 - [ ] 3.3. Todas as situações possíveis deverão ter tratamento de exceção.
-- [ ] 3.4. Todo o código fonte deverá ser escrito no idioma inglês, inclusive os comentários.
+- [ ] 3.4. Todo o có2. Observação dos requisitos não-funcionais nr. 3.1, 3.2, 3.3, 3.4, 3.5, 3.6 e 3.7 implementados nas tecnologias escolhidas (linguagem e SGBD).apresentação ao professordigo fonte deverá ser escrito no idioma inglês, inclusive os comentários.
 - [ ] 3.5. O projeto do sistema deverá estar estruturado em pacotes (pastas) contendo as entidades,
 serviços, persistência, interface homem-computador, utilitários, dentre outros.
 - [ ] 3.6. Persistência utilizando JDBC ou framework específico.
