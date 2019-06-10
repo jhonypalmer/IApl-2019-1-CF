@@ -54,9 +54,11 @@ com aspectos de segurança (criptografia).
 
 |Status|Tarefa| Data da Entrega ou Avaliação|
 |:---:|:---|:---:|
-| |1. Entrega com 1. Observação dos requisitos funcionais nr. 2.1, 2.2 implementados nas tecnologias escolhidas (linguagem de programação e SGBD).2. Observação dos requisitos não-funcionais nr. 3.1, 3.2, 3.3, 3.4, 3.5, 3.6 e 3.7 implementados nas tecnologias escolhidas (linguagem e SGBD).apresentação ao professor| 10/06/2019 |
+| |1. Entrega com 1. Observação dos requisitos funcionais nr. 2.1, 2.2 implementados nas tecnologias escolhidas (linguagem de programação e SGBD).| 10/06/2019 |
+| |2. Observação dos requisitos não-funcionais nr. 3.1, 3.2, 3.3, 3.4, 3.5, 3.6 e 3.7 implementados nas tecnologias escolhidas (linguagem e SGBD).apresentação ao professor| 10/06/2019 |
 | |3. Avaliação das tarefas 1 e 2 para todas as equipes.| 17/06/2019 |
-| |4. Observação dos requisitos funcionais nr. 2.3 (2.3.1, 2.3.2 e 2.3.3)implementados nas tecnologias escolhidas (linguagem de programação e SGBD). 5. Observação dos requisitos não-funcionais nr. 3.8 e 3.9 implementados nas tecnologias escolhidas (linguagem e SGBD).| 24/06/2019 |
+| |4. Observação dos requisitos funcionais nr. 2.3 (2.3.1, 2.3.2 e 2.3.3)implementados nas tecnologias escolhidas (linguagem de programação e SGBD).| 24/06/2019 |
+| |5. Observação dos requisitos não-funcionais nr. 3.8 e 3.9 implementados nas tecnologias escolhidas (linguagem e SGBD).| 24/06/2019 |
 | |6. Avaliação das tarefas 4 e 5 para todas as equipes.| 01/07/2019 |
 
 ## IV. Documentos
