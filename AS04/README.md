@@ -12,10 +12,7 @@
 - [ ] 1.2. Construir sistema de informação Web implementando os requisitos funcionais já definidos.
 - [ ] 1.3. O sistema deverá apresentar um menu com as opções de acesso às funcionalidades.
 - [ ] 1.4. O sistema deverá ser hospedado no servidor de apoio da disciplina cujas tecnologias recomendadas são JAVA EE e PostgreSql. Caso utilize tecnologias diferentes dessas recomendadas, a equipe de alunos fica responsável por criar toda a infraestrutura de hospedagem do sistema Web nesse servidor.
-1. Observação dos requisitos funcionais nr. 2.1, 2.2 implementados nas
-tecnologias escolhidas (linguagem de programação e SGBD).
-2. Observação dos requisitos não-funcionais nr. 3.1, 3.2, 3.3, 3.4, 3.5, 3.6 e
-3.7 implementados nas tecnologias escolhidas (linguagem e SGBD).
+
 ### II. Requisitos Funcionais:
 
 - [ ] 2.1. Acesso ao sistema por meio de login informando um endereço de e-mail e senha.
