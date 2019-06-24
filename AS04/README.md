@@ -29,7 +29,7 @@
     * Caso haja erros na execução dos serviços, um objeto genérico de erro deverá ser enviado como resposta.
     * Elaborar mecanismo para informar às equipes a forma de se consumir os serviços web.
   - [ ] 2.3.3. Consumidor 
-    * Todos os serviços web disponíveis pelo produtor deverão ser consumidos (utilizados) sendo necessário construir todas as interfaces homem-computador relativas aos serviços web disponibilizando ao usuário.2. Observação dos requisitos não-funcionais nr. 3.1, 3.2, 3.3, 3.4, 3.5, 3.6 e 3.7 implementados nas tecnologias escolhidas (linguagem e SGBD).apresentação ao professor
+    * Todos os serviços web disponíveis pelo produtor deverão ser consumidos (utilizados) sendo necessário construir todas as interfaces homem-computador relativas aos serviços web disponibilizando ao usuário.
     * Caso haja erros na execução dos serviços, um objeto genérico de erro deverá ser recebido como resposta e apresentado ao usuário.
     * **NOTA: O sistema a ser integrado por cada equipe está definido na seção “Sistemas a serem integrados”.**
 
