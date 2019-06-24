@@ -35,20 +35,15 @@
 
 ### 3. Requisitos Não-Funcionais:
 
-- [ ] 3.1. O sistema de informação deve estar preparado para apresentar sua interface homemcomputador
-em vários idiomas, isto é, deve ser implementada a internacionalização.
-- [ ] 3.2. Todas as situações que ocorrerem interação com usuário deverão ter mensagens de erro,
-advertência ou informativa.
-- [ ] 3.3. Todas as situações possíveis deverão ter tratamento de exceção.
-- [ ] 3.4. Todo o có2. Observação dos requisitos não-funcionais nr. 3.1, 3.2, 3.3, 3.4, 3.5, 3.6 e 3.7 implementados nas tecnologias escolhidas (linguagem e SGBD).apresentação ao professordigo fonte deverá ser escrito no idioma inglês, inclusive os comentários.
-- [ ] 3.5. O projeto do sistema deverá estar estruturado em pacotes (pastas) contendo as entidades,
-serviços, persistência, interface homem-computador, utilitários, dentre outros.
+- [ ] 3.1. O sistema de informação deve estar preparado para apresentar sua interface homemcomputador em vários idiomas, isto é, deve ser implementada a **internacionalização**.
+- [ ] 3.2. Todas as situações que ocorrerem interação com usuário deverão ter **mensagens de erro, advertência ou informativa**.
+- [ ] 3.3. Todas as situações possíveis deverão ter **tratamento de exceção**.
+- [ ] 3.4. Todo o código fonte deverá ser escrito no **idioma inglês**, inclusive os comentários.
+- [ ] 3.5. O projeto do sistema deverá estar estruturado em pacotes (pastas) contendo as entidades, serviços, persistência, interface homem-computador, utilitários, dentre outros.
 - [ ] 3.6. Persistência utilizando JDBC ou framework específico.
-- [ ] 3.7. Todas as transposições de chaves primárias deverão implementar integridade
-referencial.
-- [ ] 3.8. Os dados dos serviços web deverão ser trafegados em formato JSON, sem preocupação
-com aspectos de segurança (criptografia).
-- [ ] 3.9. O protocolo do serviço web a ser utilizado é o RESTFul (REpresentational State Transfer).
+- [ ] 3.7. Todas as transposições de chaves primárias deverão implementar **integridade referencial**.
+- [ ] 3.8. Os dados dos serviços web deverão ser trafegados em **formato JSON**, sem preocupação com aspectos de segurança (criptografia).
+- [ ] 3.9. O protocolo do serviço web a ser utilizado é o **RESTFul (REpresentational State Transfer)**.
 
 ## III. Cronograma
 
