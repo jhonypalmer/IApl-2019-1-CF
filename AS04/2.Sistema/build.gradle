@@ -20,6 +20,8 @@ dependencies {
 	implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-xml'
 	implementation 'org.codehaus.groovy:groovy'
 
+	compile group: 'io.springfox', name: 'springfox-swagger2', version: '2.9.2'
+	compile group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.9.2'
 	compile 'org.apache.commons:commons-csv:1.6'
 	compile 'org.apache.commons:commons-lang3:3.0'
 	runtimeOnly 'org.postgresql:postgresql'
