@@ -18,17 +18,17 @@ class HolidayController {
 	@Autowired
 	private HolidayService holidayService
 
-	@GetMapping(produces = [MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE, APPLICATION_FIXED_POSITION])
+	@GetMapping(produces = [MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE, APPLICATION_FIXED_POSITION])
 	HolidaysDTO getHolidays() {
 		return holidayService.findAllHolidays(Year.now().value)
 	}
 
-	@GetMapping(value = "/{id}", produces = [MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE, APPLICATION_FIXED_POSITION])
+	@GetMapping(value = "/{id}", produces = [MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE, APPLICATION_FIXED_POSITION])
 	HolidaysDTO getHoliday(@PathVariable Long id) {
 		return holidayService.findHolidayById(id)
 	}
 
-	@PostMapping(consumes = [MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE, APPLICATION_FIXED_POSITION])
+	@PostMapping(consumes = [MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE, APPLICATION_FIXED_POSITION])
 	ResponseEntity<HolidaysDTO> saveHolidays(@RequestBody HolidaysDTO holidaysDTO) {
 		holidayService.saveHolidays(holidaysDTO)
 		return ResponseEntity.ok(holidaysDTO)
