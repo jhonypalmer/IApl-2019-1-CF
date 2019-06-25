@@ -10,8 +10,24 @@ Aplicação desenvolvida para pratica da materia de Integraçao de Aplicações,
 
 ## Atividade Supervisionada 04 ([Roteiro](AS04/README.md))
 
-* [1.Documentos](AS04/1.Documentos)
-* [2.Sistema](AS04/1.Sistema)
+* [**1.Documentos**](AS04/1.Documentos)
+* [**2.Sistema**](AS04/1.Sistema)
+* **3.Tecnologias Utilizadas**
+  * **Linguagem de Programação:** 
+      * Back-end: [Groovy](https://groovy-lang.org/)
+      * Front-end: [Angular](https://angular.io/)
+  * **Banco de Dados:**
+    * [Postgres](https://www.postgresql.org/)
+  * **Framework:**
+    * [Spring Boot](https://spring.io/projects/spring-boot)
+  * **Gerenciador de Dependências:**
+    * [Gradle](https://gradle.org/)
+  * **Hospedagem da Aplicação:**
+    * [Heroku](https://www.heroku.com/)
+* **4.API**
+  * Link 
+* **5.Webservice**
+  * Link
 
 ## Integrantes
 
