@@ -27,7 +27,7 @@ Aplicação desenvolvida para pratica da materia de Integraçao de Aplicações,
   * **Biblioteca de Documentação:**
     * [Swagger](https://swagger.io/)
 * **4. API**
-  * Link 
+  * [Calendário de Eventos](https://calendarioeventos.herokuapp.com/swagger-ui.html#/holiday-controller)
 * **5. Webservice**
   * Link
 
