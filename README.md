@@ -10,9 +10,9 @@ Aplicação desenvolvida para pratica da materia de Integraçao de Aplicações,
 
 ## Atividade Supervisionada 04 ([Roteiro](AS04/README.md))
 
-* [**1.Documentos**](AS04/1.Documentos)
-* [**2.Sistema**](AS04/1.Sistema)
-* **3.Tecnologias Utilizadas**
+* [**1. Documentos**](AS04/1.Documentos)
+* [**2. Sistema**](AS04/1.Sistema)
+* **3. Tecnologias Utilizadas**
   * **Linguagem de Programação:** 
       * Back-end: [Groovy](https://groovy-lang.org/)
       * Front-end: [Angular](https://angular.io/)
@@ -24,9 +24,9 @@ Aplicação desenvolvida para pratica da materia de Integraçao de Aplicações,
     * [Gradle](https://gradle.org/)
   * **Hospedagem da Aplicação:**
     * [Heroku](https://www.heroku.com/)
-* **4.API**
+* **4. API**
   * Link 
-* **5.Webservice**
+* **5. Webservice**
   * Link
 
 ## Integrantes
