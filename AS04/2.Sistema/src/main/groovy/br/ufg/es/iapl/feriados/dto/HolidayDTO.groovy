@@ -8,6 +8,8 @@ import java.time.LocalDate
 @JacksonXmlRootElement(localName = "holiday")
 class HolidayDTO {
 
+	Long id
+
 	String description
 
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
