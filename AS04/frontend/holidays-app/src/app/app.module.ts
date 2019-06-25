@@ -20,6 +20,7 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {HolidayListComponent} from './holiday/holiday-list/holiday-list.component';
 import {HolidayCreateComponent} from './holiday/holiday-create/holiday-create.component';
 import {HttpClientModule} from "@angular/common/http";
+import {ApiModule, Configuration} from "./api-client";
 
 @NgModule({
   declarations: [
@@ -45,6 +46,10 @@ import {HttpClientModule} from "@angular/common/http";
     MatProgressBarModule,
     MatPaginatorModule,
     MatSortModule,
+
+    ApiModule.forRoot(() => {
+      return new Configuration();
+    })
 
   ],
   providers: [],

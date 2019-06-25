@@ -2,8 +2,9 @@ import {HttpClient} from '@angular/common/http';
 import {AfterViewInit, Component, ViewChild} from '@angular/core';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
-import {merge, Observable, of as observableOf} from 'rxjs';
+import {merge, of as observableOf} from 'rxjs';
 import {catchError, map, startWith, switchMap} from 'rxjs/operators';
+import {HolidayControllerService, HolidayDTO} from "../../api-client";
 
 @Component({
   selector: 'app-holiday-list',
@@ -11,9 +12,8 @@ import {catchError, map, startWith, switchMap} from 'rxjs/operators';
   styleUrls: ['./holiday-list.component.scss']
 })
 export class HolidayListComponent implements AfterViewInit {
-  displayedColumns: string[] = ['created', 'state', 'number', 'title'];
-  exampleDatabase: ExampleHttpDatabase | null;
-  data: GithubIssue[] = [];
+  displayedColumns: string[] = ['date', 'description'];
+  data: HolidayDTO[] = [];
 
   resultsLength = 0;
   isLoadingResults = true;
@@ -22,11 +22,13 @@ export class HolidayListComponent implements AfterViewInit {
   @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: false}) sort: MatSort;
 
-  constructor(private _httpClient: HttpClient) {
+  constructor(private _httpClient: HttpClient, private _holidayControllerService: HolidayControllerService) {
   }
 
   ngAfterViewInit() {
-    this.exampleDatabase = new ExampleHttpDatabase(this._httpClient);
+    this._holidayControllerService.getHolidaysUsingGET().toPromise().then((a) => {
+      console.log(a);
+    });
 
     // If the user changes the sort order, reset back to the first page.
     this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 0);
@@ -36,16 +38,15 @@ export class HolidayListComponent implements AfterViewInit {
         startWith({}),
         switchMap(() => {
           this.isLoadingResults = true;
-          return this.exampleDatabase!.getRepoIssues(
-            this.sort.active, this.sort.direction, this.paginator.pageIndex);
+          return this._holidayControllerService.getHolidaysUsingGET();
         }),
         map(data => {
           // Flip flag to show that loading has finished.
           this.isLoadingResults = false;
           this.isRateLimitReached = false;
-          this.resultsLength = data.total_count;
+          this.resultsLength = 100;
 
-          return data.items;
+          return data.holidays;
         }),
         catchError(() => {
           this.isLoadingResults = false;
@@ -54,31 +55,5 @@ export class HolidayListComponent implements AfterViewInit {
           return observableOf([]);
         })
       ).subscribe(data => this.data = data);
-  }
-}
-
-export interface GithubApi {
-  items: GithubIssue[];
-  total_count: number;
-}
-
-export interface GithubIssue {
-  created_at: string;
-  number: string;
-  state: string;
-  title: string;
-}
-
-/** An example database that the data source uses to retrieve data for the table. */
-export class ExampleHttpDatabase {
-  constructor(private _httpClient: HttpClient) {
-  }
-
-  getRepoIssues(sort: string, order: string, page: number): Observable<GithubApi> {
-    const href = 'https://api.github.com/search/issues';
-    const requestUrl =
-      `${href}?q=repo:angular/components&sort=${sort}&order=${order}&page=${page + 1}`;
-
-    return this._httpClient.get<GithubApi>(requestUrl);
   }
 }
