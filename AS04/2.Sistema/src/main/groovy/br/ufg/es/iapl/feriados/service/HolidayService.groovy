@@ -2,6 +2,7 @@ package br.ufg.es.iapl.feriados.service
 
 import br.ufg.es.iapl.feriados.dto.HolidayDTO
 import br.ufg.es.iapl.feriados.dto.HolidaysDTO
+import br.ufg.es.iapl.feriados.exception.ResourceNotFoundException
 import br.ufg.es.iapl.feriados.model.Holiday
 import br.ufg.es.iapl.feriados.model.definition.MonthDayHolidayDate
 import br.ufg.es.iapl.feriados.model.region.City
@@ -14,6 +15,8 @@ import br.ufg.es.iapl.feriados.repository.HolidayRepository
 import br.ufg.es.iapl.feriados.repository.StateRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
+
+import java.time.Year
 
 @Service
 class HolidayService {
@@ -44,15 +47,24 @@ class HolidayService {
 
 	HolidaysDTO findHolidayById(Long id) {
 		HolidaysDTO holidaysDTO = new HolidaysDTO()
-		Holiday holiday = holidayRepository.findById(id).get()
+		Optional<Holiday> holiday = holidayRepository.findById(id)
 
-		holidaysDTO.setHolidays(Arrays.asList(convertHolidayToDTO(holiday)))
+		if (!holiday.isPresent()) {
+			throw new ResourceNotFoundException("No such holiday")
+		}
+
+		holidaysDTO.setHolidays(Arrays.asList(convertHolidayToDTO(holiday.get(), Year.now().value)))
 
 		return holidaysDTO
 	}
 
 	private HolidayDTO convertHolidayToDTO(Holiday holiday, int year) {
 		HolidayDTO holidayDTO = new HolidayDTO()
+
+		if (holiday.getId() != null) {
+			holidayDTO.setId(holiday.getId())
+		}
+
 		holidayDTO.setDescription(holiday.getDescription())
 		holidayDTO.setDate(holiday.getDateDefinition().getDate(year))
 
@@ -99,4 +111,5 @@ class HolidayService {
 		}
 
 	}
+
 }
