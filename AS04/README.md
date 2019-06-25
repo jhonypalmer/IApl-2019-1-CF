@@ -8,10 +8,10 @@
 
 ### 1. Definições Gerais
 
-- [ ] 1.1. Reutilizar todas as definições, modelagem e implementações das atividades supervisionadas nº 1, 2, e 3.
+- [x] 1.1. Reutilizar todas as definições, modelagem e implementações das atividades supervisionadas nº 1, 2, e 3.
 - [ ] 1.2. Construir sistema de informação Web implementando os requisitos funcionais já definidos.
 - [ ] 1.3. O sistema deverá apresentar um menu com as opções de acesso às funcionalidades.
-- [ ] 1.4. O sistema deverá ser hospedado no servidor de apoio da disciplina cujas tecnologias recomendadas são JAVA EE e PostgreSql. Caso utilize tecnologias diferentes dessas recomendadas, a equipe de alunos fica responsável por criar toda a infraestrutura de hospedagem do sistema Web nesse servidor.
+- [x] 1.4. O sistema deverá ser hospedado no servidor de apoio da disciplina cujas tecnologias recomendadas são JAVA EE e PostgreSql. Caso utilize tecnologias diferentes dessas recomendadas, a equipe de alunos fica responsável por criar toda a infraestrutura de hospedagem do sistema Web nesse servidor.
 
 ### 2. Requisitos Funcionais:
 
@@ -38,12 +38,12 @@
 - [ ] 3.1. O sistema de informação deve estar preparado para apresentar sua interface homemcomputador em vários idiomas, isto é, deve ser implementada a **internacionalização**.
 - [ ] 3.2. Todas as situações que ocorrerem interação com usuário deverão ter **mensagens de erro, advertência ou informativa**.
 - [ ] 3.3. Todas as situações possíveis deverão ter **tratamento de exceção**.
-- [ ] 3.4. Todo o código fonte deverá ser escrito no **idioma inglês**, inclusive os comentários.
-- [ ] 3.5. O projeto do sistema deverá estar estruturado em pacotes (pastas) contendo as entidades, serviços, persistência, interface homem-computador, utilitários, dentre outros.
-- [ ] 3.6. Persistência utilizando JDBC ou framework específico.
-- [ ] 3.7. Todas as transposições de chaves primárias deverão implementar **integridade referencial**.
-- [ ] 3.8. Os dados dos serviços web deverão ser trafegados em **formato JSON**, sem preocupação com aspectos de segurança (criptografia).
-- [ ] 3.9. O protocolo do serviço web a ser utilizado é o **RESTFul (REpresentational State Transfer)**.
+- [x] 3.4. Todo o código fonte deverá ser escrito no **idioma inglês**, inclusive os comentários.
+- [x] 3.5. O projeto do sistema deverá estar estruturado em pacotes (pastas) contendo as entidades, serviços, persistência, interface homem-computador, utilitários, dentre outros.
+- [x] 3.6. Persistência utilizando JDBC ou framework específico.
+- [x] 3.7. Todas as transposições de chaves primárias deverão implementar **integridade referencial**.
+- [x] 3.8. Os dados dos serviços web deverão ser trafegados em **formato JSON**, sem preocupação com aspectos de segurança (criptografia).
+- [x] 3.9. O protocolo do serviço web a ser utilizado é o **RESTFul (REpresentational State Transfer)**.
 
 ## III. Cronograma
 
