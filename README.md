@@ -24,6 +24,8 @@ Aplicação desenvolvida para pratica da materia de Integraçao de Aplicações,
     * [Gradle](https://gradle.org/)
   * **Hospedagem da Aplicação:**
     * [Heroku](https://www.heroku.com/)
+  * **Biblioteca de Documentação:**
+    * [Swagger](https://swagger.io/)
 * **4. API**
   * Link 
 * **5. Webservice**
