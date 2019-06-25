@@ -1,5 +1,41 @@
 <h2 class="mat-title">Lista de feriados</h2>
 
+<mat-card style="padding: 0">
+  <mat-progress-bar [mode]="isLoadingResults ? 'indeterminate': 'determinate'"></mat-progress-bar>
+  <div class="example-rate-limit-reached" *ngIf="isRateLimitReached">
+    GitHub's API rate limit has been reached. It will be reset in one minute.
+  </div>
+
+  <table mat-table [dataSource]="data" matSort matSortActive="created" matSortDisableClear matSortDirection="desc">
+    <ng-container matColumnDef="number">
+      <th mat-header-cell *matHeaderCellDef>#</th>
+      <td mat-cell *matCellDef="let row">{{row.number}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="title">
+      <th mat-header-cell *matHeaderCellDef>Title</th>
+      <td mat-cell *matCellDef="let row">{{row.title}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="state">
+      <th mat-header-cell *matHeaderCellDef>State</th>
+      <td mat-cell *matCellDef="let row">{{row.state}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="created">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear>
+        Created
+      </th>
+      <td mat-cell *matCellDef="let row">{{row.created_at | date}}</td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <mat-paginator [length]="resultsLength" [pageSize]="30"></mat-paginator>
+</mat-card>
+
 <div class="holiday-list__create-btn-container">
   <button mat-fab color="primary" matTooltip="Cadastrar novo feriado" matTooltipPosition="left" [routerLink]="['holiday', 'create']">
     <mat-icon>add</mat-icon>
