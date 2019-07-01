@@ -31,6 +31,7 @@ import {FormsModule} from "@angular/forms";
 import {AuthorizationHeaderInterceptor} from "./authorization-header.interceptor";
 import {HolidayFormComponent} from './holiday/holiday-form/holiday-form.component';
 import {HolidayEditComponent} from './holiday/holiday-edit/holiday-edit.component';
+import { AccountListComponent } from './external/account-list/account-list.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import {HolidayEditComponent} from './holiday/holiday-edit/holiday-edit.componen
     HolidayCreateComponent,
     AppliedHolidayListComponent,
     HolidayFormComponent,
-    HolidayEditComponent
+    HolidayEditComponent,
+    AccountListComponent
   ],
   imports: [
     BrowserModule,

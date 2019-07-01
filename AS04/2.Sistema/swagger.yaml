@@ -11,8 +11,16 @@ basePath: /
 tags:
   - name: applied-holiday-controller
     description: Applied Holiday Controller
+  - name: bank-controller
+    description: Bank Controller
+  - name: city-controller
+    description: City Controller
+  - name: country-controller
+    description: Country Controller
   - name: holiday-controller
     description: Holiday Controller
+  - name: state-controller
+    description: State Controller
 paths:
   /appliedHoliday:
     get:
@@ -50,6 +58,126 @@ paths:
           description: OK
           schema:
             $ref: '#/definitions/AppliedHolidayResultList'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  /city:
+    get:
+      tags:
+        - city-controller
+      summary: getCities
+      operationId: getCitiesUsingGET
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/City'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  '/city/{state}':
+    get:
+      tags:
+        - city-controller
+      summary: getCitiesByState
+      operationId: getCitiesByStateUsingGET
+      produces:
+        - application/json
+      parameters:
+        - name: state
+          in: path
+          description: state
+          required: true
+          type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/City'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  /country:
+    get:
+      tags:
+        - country-controller
+      summary: getCountries
+      operationId: getCountriesUsingGET
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Country'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  /external:
+    get:
+      tags:
+        - bank-controller
+      summary: getAccounts
+      operationId: getAccountsUsingGET
+      produces:
+        - application/json;charset=UTF-8
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Account'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  '/external/{id}':
+    get:
+      tags:
+        - bank-controller
+      summary: getAccount
+      operationId: getAccountUsingGET
+      produces:
+        - application/json;charset=UTF-8
+      parameters:
+        - name: id
+          in: path
+          description: id
+          required: true
+          type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Account'
         '401':
           description: Unauthorized
         '403':
@@ -104,7 +232,9 @@ paths:
         - application/fixedposition
         - application/json
       produces:
-        - '*/*'
+        - application/xml
+        - application/fixedposition
+        - application/json
       parameters:
         - in: body
           name: monthDayHoliday
@@ -136,7 +266,9 @@ paths:
         - application/fixedposition
         - application/json
       produces:
-        - '*/*'
+        - application/xml
+        - application/fixedposition
+        - application/json
       parameters:
         - in: body
           name: monthDayHoliday
@@ -187,7 +319,107 @@ paths:
         '404':
           description: Not Found
       deprecated: false
+    delete:
+      tags:
+        - holiday-controller
+      summary: deleteHoliday
+      operationId: deleteHolidayUsingDELETE
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          description: id
+          required: true
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: OK
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      deprecated: false
+  /state:
+    get:
+      tags:
+        - state-controller
+      summary: getStates
+      operationId: getStatesUsingGET
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/State'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  '/state/{country}':
+    get:
+      tags:
+        - state-controller
+      summary: getStatesByCountry
+      operationId: getStatesByCountryUsingGET
+      produces:
+        - application/json
+      parameters:
+        - name: country
+          in: path
+          description: country
+          required: true
+          type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/State'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
 definitions:
+  Account:
+    type: object
+    properties:
+      agencia:
+        type: integer
+        format: int64
+      ativo:
+        type: boolean
+      id:
+        type: integer
+        format: int64
+      limite:
+        type: number
+        format: float
+      numero:
+        type: integer
+        format: int64
+      saldo:
+        type: number
+        format: float
+      senha:
+        type: string
+      titular:
+        type: integer
+        format: int64
+    title: Account
   AppliedHoliday:
     type: object
     properties:
@@ -217,6 +449,30 @@ definitions:
         type: integer
         format: int32
     title: AppliedHolidayResultList
+  City:
+    type: object
+    properties:
+      country:
+        $ref: '#/definitions/Country'
+      id:
+        type: integer
+        format: int64
+      name:
+        type: string
+      state:
+        $ref: '#/definitions/State'
+    title: City
+  Country:
+    type: object
+    properties:
+      abbreviation:
+        type: string
+      id:
+        type: integer
+        format: int64
+      name:
+        type: string
+    title: Country
   MonthDayHoliday:
     type: object
     properties:
@@ -249,3 +505,14 @@ definitions:
         type: integer
         format: int64
     title: MonthDayHolidayResultList
+  State:
+    type: object
+    properties:
+      country:
+        $ref: '#/definitions/Country'
+      id:
+        type: integer
+        format: int64
+      name:
+        type: string
+    title: State

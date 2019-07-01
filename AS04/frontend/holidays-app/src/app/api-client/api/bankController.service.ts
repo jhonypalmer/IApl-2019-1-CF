@@ -18,14 +18,14 @@ import { CustomHttpUrlEncodingCodec }                        from '../encoder';
 
 import { Observable }                                        from 'rxjs/Observable';
 
-import { City } from '../model/city';
+import { Account } from '../model/account';
 
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
 import { Configuration }                                     from '../configuration';
 
 
 @Injectable()
-export class CityControllerService {
+export class BankControllerService {
 
     protected basePath = 'https://localhost:9090';
     public defaultHeaders = new HttpHeaders();
@@ -57,26 +57,26 @@ export class CityControllerService {
 
 
     /**
-     * getCitiesByState
+     * getAccount
      * 
-     * @param state state
+     * @param id id
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getCitiesByStateUsingGET(state: string, observe?: 'body', reportProgress?: boolean): Observable<Array<City>>;
-    public getCitiesByStateUsingGET(state: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<City>>>;
-    public getCitiesByStateUsingGET(state: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<City>>>;
-    public getCitiesByStateUsingGET(state: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public getAccountUsingGET(id: string, observe?: 'body', reportProgress?: boolean): Observable<Account>;
+    public getAccountUsingGET(id: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Account>>;
+    public getAccountUsingGET(id: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Account>>;
+    public getAccountUsingGET(id: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
-        if (state === null || state === undefined) {
-            throw new Error('Required parameter state was null or undefined when calling getCitiesByStateUsingGET.');
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling getAccountUsingGET.');
         }
 
         let headers = this.defaultHeaders;
 
         // to determine the Accept header
         let httpHeaderAccepts: string[] = [
-            'application/json'
+            'application/json;charset=UTF-8'
         ];
         const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
         if (httpHeaderAcceptSelected != undefined) {
@@ -87,7 +87,7 @@ export class CityControllerService {
         const consumes: string[] = [
         ];
 
-        return this.httpClient.get<Array<City>>(`${this.basePath}/city/${encodeURIComponent(String(state))}`,
+        return this.httpClient.get<Account>(`${this.basePath}/external/${encodeURIComponent(String(id))}`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
@@ -98,21 +98,21 @@ export class CityControllerService {
     }
 
     /**
-     * getCities
+     * getAccounts
      * 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getCitiesUsingGET(observe?: 'body', reportProgress?: boolean): Observable<Array<City>>;
-    public getCitiesUsingGET(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<City>>>;
-    public getCitiesUsingGET(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<City>>>;
-    public getCitiesUsingGET(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public getAccountsUsingGET(observe?: 'body', reportProgress?: boolean): Observable<Array<Account>>;
+    public getAccountsUsingGET(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<Account>>>;
+    public getAccountsUsingGET(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<Account>>>;
+    public getAccountsUsingGET(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         let headers = this.defaultHeaders;
 
         // to determine the Accept header
         let httpHeaderAccepts: string[] = [
-            'application/json'
+            'application/json;charset=UTF-8'
         ];
         const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
         if (httpHeaderAcceptSelected != undefined) {
@@ -123,7 +123,7 @@ export class CityControllerService {
         const consumes: string[] = [
         ];
 
-        return this.httpClient.get<Array<City>>(`${this.basePath}/city`,
+        return this.httpClient.get<Array<Account>>(`${this.basePath}/external`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,

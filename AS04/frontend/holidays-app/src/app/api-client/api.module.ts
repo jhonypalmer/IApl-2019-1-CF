@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 
 
 import { AppliedHolidayControllerService } from './api/appliedHolidayController.service';
+import { BankControllerService } from './api/bankController.service';
 import { CityControllerService } from './api/cityController.service';
 import { CountryControllerService } from './api/countryController.service';
 import { HolidayControllerService } from './api/holidayController.service';
@@ -15,6 +16,7 @@ import { StateControllerService } from './api/stateController.service';
   exports:      [],
   providers: [
     AppliedHolidayControllerService,
+    BankControllerService,
     CityControllerService,
     CountryControllerService,
     HolidayControllerService,

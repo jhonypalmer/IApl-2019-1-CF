@@ -4,6 +4,7 @@ import {HolidayListComponent} from "./holiday/holiday-list/holiday-list.componen
 import {HolidayCreateComponent} from "./holiday/holiday-create/holiday-create.component";
 import {AppliedHolidayListComponent} from "./applied-holiday/applied-holiday-list/applied-holiday-list.component";
 import {HolidayEditComponent} from "./holiday/holiday-edit/holiday-edit.component";
+import {AccountListComponent} from "./external/account-list/account-list.component";
 
 const routes: Routes = [
   {
@@ -21,6 +22,10 @@ const routes: Routes = [
   {
     path: 'holiday/edit/:id',
     component: HolidayEditComponent,
+  },
+  {
+    path: 'account/list',
+    component: AccountListComponent,
   },
 ];
 
