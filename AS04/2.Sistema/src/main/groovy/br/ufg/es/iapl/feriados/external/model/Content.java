@@ -1,6 +1,5 @@
 package br.ufg.es.iapl.feriados.external.model;
 
-import com.google.gson.annotations.SerializedName;
 
 public class Content{
     public String token;
