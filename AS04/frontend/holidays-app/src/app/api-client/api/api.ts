@@ -1,5 +1,11 @@
 export * from './appliedHolidayController.service';
 import { AppliedHolidayControllerService } from './appliedHolidayController.service';
+export * from './cityController.service';
+import { CityControllerService } from './cityController.service';
+export * from './countryController.service';
+import { CountryControllerService } from './countryController.service';
 export * from './holidayController.service';
 import { HolidayControllerService } from './holidayController.service';
-export const APIS = [AppliedHolidayControllerService, HolidayControllerService];
+export * from './stateController.service';
+import { StateControllerService } from './stateController.service';
+export const APIS = [AppliedHolidayControllerService, CityControllerService, CountryControllerService, HolidayControllerService, StateControllerService];

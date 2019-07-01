@@ -4,7 +4,10 @@ import { HttpClient } from '@angular/common/http';
 
 
 import { AppliedHolidayControllerService } from './api/appliedHolidayController.service';
+import { CityControllerService } from './api/cityController.service';
+import { CountryControllerService } from './api/countryController.service';
 import { HolidayControllerService } from './api/holidayController.service';
+import { StateControllerService } from './api/stateController.service';
 
 @NgModule({
   imports:      [],
@@ -12,7 +15,10 @@ import { HolidayControllerService } from './api/holidayController.service';
   exports:      [],
   providers: [
     AppliedHolidayControllerService,
-    HolidayControllerService ]
+    CityControllerService,
+    CountryControllerService,
+    HolidayControllerService,
+    StateControllerService ]
 })
 export class ApiModule {
     public static forRoot(configurationFactory: () => Configuration): ModuleWithProviders {

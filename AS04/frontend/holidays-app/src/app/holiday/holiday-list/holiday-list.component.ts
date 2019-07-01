@@ -1,10 +1,10 @@
-import {HttpClient} from '@angular/common/http';
 import {AfterViewInit, Component, ViewChild} from '@angular/core';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {merge, of as observableOf} from 'rxjs';
 import {catchError, map, startWith, switchMap} from 'rxjs/operators';
 import {HolidayControllerService, MonthDayHoliday} from "../../api-client";
+import {MatSnackBar} from "@angular/material";
 
 @Component({
   selector: 'app-holiday-list',
@@ -12,7 +12,7 @@ import {HolidayControllerService, MonthDayHoliday} from "../../api-client";
   styleUrls: ['./holiday-list.component.scss']
 })
 export class HolidayListComponent implements AfterViewInit {
-  displayedColumns: string[] = ['date', 'description'];
+  displayedColumns: string[] = ['date', 'description', 'actions'];
   data: MonthDayHoliday[] = [];
 
   resultsLength = 0;
@@ -21,7 +21,10 @@ export class HolidayListComponent implements AfterViewInit {
   @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: false}) sort: MatSort;
 
-  constructor(private _httpClient: HttpClient, private _holidayControllerService: HolidayControllerService) {
+  constructor(
+    private readonly _holidayControllerService: HolidayControllerService,
+    private readonly _matSnackBar: MatSnackBar,
+  ) {
   }
 
   ngAfterViewInit() {
@@ -45,5 +48,16 @@ export class HolidayListComponent implements AfterViewInit {
           return observableOf([]);
         })
       ).subscribe(data => this.data = data);
+  }
+
+  async deleteHoliday(holiday: MonthDayHoliday) {
+    try {
+      await this._holidayControllerService.deleteHolidayUsingDELETE(holiday.id).toPromise();
+      this._matSnackBar.open('Feriado removido com sucesso', 'Desfazer', {duration: 4000});
+      this.paginator.firstPage();
+    } catch (e) {
+      this._matSnackBar.open('Falha ao remover feriado', null, {duration: 2000});
+      console.error(e);
+    }
   }
 }

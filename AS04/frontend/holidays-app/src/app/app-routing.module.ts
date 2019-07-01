@@ -3,6 +3,7 @@ import {RouterModule, Routes} from '@angular/router';
 import {HolidayListComponent} from "./holiday/holiday-list/holiday-list.component";
 import {HolidayCreateComponent} from "./holiday/holiday-create/holiday-create.component";
 import {AppliedHolidayListComponent} from "./applied-holiday/applied-holiday-list/applied-holiday-list.component";
+import {HolidayEditComponent} from "./holiday/holiday-edit/holiday-edit.component";
 
 const routes: Routes = [
   {
@@ -16,6 +17,10 @@ const routes: Routes = [
   {
     path: 'holiday/create',
     component: HolidayCreateComponent,
+  },
+  {
+    path: 'holiday/edit/:id',
+    component: HolidayEditComponent,
   },
 ];
 

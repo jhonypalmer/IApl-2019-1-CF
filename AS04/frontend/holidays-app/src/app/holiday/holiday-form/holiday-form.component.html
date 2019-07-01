@@ -1,0 +1,40 @@
+<section style="display: flex; flex-direction: column">
+  <mat-form-field>
+    <input matInput name="description" [(ngModel)]="holiday.description" placeholder="Descrição do feriado" required>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput name="month" type="number" [(ngModel)]="holiday.month" placeholder="Mês" required>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput name="dayOfMonth" type="number" [(ngModel)]="holiday.dayOfMonth" placeholder="Dia" required>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>País</mat-label>
+    <mat-select required [(ngModel)]="holiday.country" (valueChange)="loadStates($event)">
+      <mat-option *ngFor="let country of countries" [value]="country.name">
+        {{country.abbreviation}} - {{country.name}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Estado</mat-label>
+    <mat-select [disabled]="!holiday.country" (valueChange)="loadCities($event)">
+      <mat-option *ngFor="let state of states" [value]="state.name">
+        {{state.name}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Cidade</mat-label>
+    <mat-select [disabled]="!holiday.country">
+      <mat-option *ngFor="let city of cities" [value]="city.name">
+        {{city.name}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</section>
