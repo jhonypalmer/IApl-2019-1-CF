@@ -36,8 +36,8 @@ class HolidayController {
 
 	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	ResponseEntity<HolidaysDTO> saveHolidays(@RequestBody HolidaysDTO holidaysDTO) {
-		holidayService.saveHolidays(holidaysDTO)
-		return ResponseEntity.ok(holidaysDTO)
+		HolidaysDTO holidaysDTOSave = holidayService.saveHolidays(holidaysDTO)
+		return ResponseEntity.ok(holidaysDTOSave)
 	}
 
 	@DeleteMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)

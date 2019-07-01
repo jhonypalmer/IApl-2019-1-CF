@@ -123,7 +123,9 @@ class HolidayService {
 
 	}
 
-	void saveHolidays(HolidaysDTO holidaysDTO) {
+	HolidaysDTO saveHolidays(HolidaysDTO holidaysDTO) {
+		HolidaysDTO holidaysDTOSave = new HolidaysDTO()
+		List<HolidayDTO> listholidaysSave = new ArrayList<>();
 		for (HolidayDTO holidayDTO : holidaysDTO.getHolidays()) {
 			Holiday holiday = new Holiday()
 			holiday.setDescription(holidayDTO.getDescription())
@@ -144,8 +146,12 @@ class HolidayService {
 			}
 
 			holiday.setRegion(region)
-			holidayRepository.save(holiday)
+			Holiday holidaySave = holidayRepository.save(holiday)
+
+			listholidaysSave.add(convertHolidayToDTO(holidaySave, Year.now().value))
 		}
+		holidaysDTOSave.setHolidays(listholidaysSave)
+		return holidaysDTOSave;
 
 	}
 
