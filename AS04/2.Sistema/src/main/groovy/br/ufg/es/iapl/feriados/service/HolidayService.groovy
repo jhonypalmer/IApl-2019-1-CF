@@ -47,15 +47,26 @@ class HolidayService {
 
 	HolidaysDTO findHolidayById(Long id) {
 		HolidaysDTO holidaysDTO = new HolidaysDTO()
+		Holiday holiday = findById(id)
+
+		holidaysDTO.setHolidays(Arrays.asList(convertHolidayToDTO(holiday, Year.now().value)))
+
+		return holidaysDTO
+	}
+
+	void deleteHolidayById(Long id) {
+		Holiday holiday = findById(id)
+		holidayRepository.deleteById(id)
+	}
+
+	private Holiday findById(Long id) {
 		Optional<Holiday> holiday = holidayRepository.findById(id)
 
 		if (!holiday.isPresent()) {
 			throw new ResourceNotFoundException("No such holiday")
 		}
 
-		holidaysDTO.setHolidays(Arrays.asList(convertHolidayToDTO(holiday.get(), Year.now().value)))
-
-		return holidaysDTO
+		return holiday.get()
 	}
 
 	private HolidayDTO convertHolidayToDTO(Holiday holiday, int year) {
@@ -84,6 +95,32 @@ class HolidayService {
 		}
 
 		return holidayDTO
+	}
+
+	void udpateHolidays(HolidaysDTO holidaysDTO) {
+		for (HolidayDTO holidayDTO : holidaysDTO.getHolidays()) {
+			Holiday holiday = findById(holidayDTO.getId())
+			holiday.setDescription(holidayDTO.getDescription())
+
+			MonthDayHolidayDate monthDayHolidayDate = new MonthDayHolidayDate()
+			monthDayHolidayDate.setDayOfMonth(holidayDTO.getDate().getDayOfMonth())
+			monthDayHolidayDate.setMonth(holidayDTO.getDate().getMonth())
+			holiday.setDateDefinition(monthDayHolidayDate)
+
+			Region region = null
+
+			if (holidayDTO.getCity() != null && !holidayDTO.getCity().isEmpty()) {
+				region = cityRepository.findByName(holidayDTO.getCity())
+			} else if (holidayDTO.getState() != null && !holidayDTO.getState().isEmpty()) {
+				region = stateRepository.findByName(holidayDTO.getState())
+			} else {
+				region = countryRepository.findByName(holidayDTO.getCountry())
+			}
+
+			holiday.setRegion(region)
+			holidayRepository.save(holiday)
+		}
+
 	}
 
 	void saveHolidays(HolidaysDTO holidaysDTO) {
