@@ -68,8 +68,8 @@ import {HolidayEditComponent} from './holiday/holiday-edit/holiday-edit.componen
 
     ApiModule.forRoot(() => {
       return new Configuration({
-        basePath: 'https://calendarioeventos.herokuapp.com',
-        // basePath: 'http://localhost:9090',
+        // basePath: 'https://calendarioeventos.herokuapp.com',
+        basePath: 'http://localhost:9090',
       });
     })
 

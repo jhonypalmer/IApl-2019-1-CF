@@ -22,7 +22,7 @@
 
   <mat-form-field>
     <mat-label>Estado</mat-label>
-    <mat-select [disabled]="!holiday.country" (valueChange)="loadCities($event)">
+    <mat-select [(ngModel)]="holiday.state" [disabled]="!holiday.country" (valueChange)="loadCities($event)">
       <mat-option *ngFor="let state of states" [value]="state.name">
         {{state.name}}
       </mat-option>
@@ -31,8 +31,8 @@
 
   <mat-form-field>
     <mat-label>Cidade</mat-label>
-    <mat-select [disabled]="!holiday.country">
-      <mat-option *ngFor="let city of cities" [value]="city.name">
+    <mat-select [disabled]="!holiday.state">
+      <mat-option [(ngModel)]="holiday.city" *ngFor="let city of cities" [value]="city.name">
         {{city.name}}
       </mat-option>
     </mat-select>

@@ -24,8 +24,14 @@ export class HolidayFormComponent implements OnInit {
   ) {
   }
 
-  ngOnInit() {
-    this.loadCountries();
+  async ngOnInit() {
+    await this.loadCountries();
+    if (this.holiday.country) {
+      await this.loadStates(this.holiday.country);
+    }
+    if (this.holiday.state) {
+      await this.loadCities(this.holiday.state);
+    }
   }
 
   async loadCountries() {

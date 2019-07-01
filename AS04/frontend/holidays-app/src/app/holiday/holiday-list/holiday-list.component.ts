@@ -54,7 +54,7 @@ export class HolidayListComponent implements AfterViewInit {
     try {
       await this._holidayControllerService.deleteHolidayUsingDELETE(holiday.id).toPromise();
       this._matSnackBar.open('Feriado removido com sucesso', 'Desfazer', {duration: 4000});
-      this.paginator.firstPage();
+      this.paginator.page.emit({pageIndex: 0, pageSize: 20, length: this.paginator.length});
     } catch (e) {
       this._matSnackBar.open('Falha ao remover feriado', null, {duration: 2000});
       console.error(e);
