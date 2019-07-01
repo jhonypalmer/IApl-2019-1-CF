@@ -1,5 +1,5 @@
-<div class="app-container" [class.example-is-mobile]="mobileQuery.matches">
-  <mat-toolbar color="primary" class="example-toolbar">
+<div class="app-container" [class.app-is-mobile]="mobileQuery.matches">
+  <mat-toolbar color="primary" class="app-toolbar">
     <button mat-icon-button (click)="snav.toggle()">
       <mat-icon>menu</mat-icon>
     </button>
@@ -11,6 +11,10 @@
       <mat-nav-list class="app-nav-list">
         <a mat-list-item routerLink="/" routerLinkActive="link-active">
           <mat-icon matListIcon>calendar_today</mat-icon>
+          <p matLine>Calendario</p>
+        </a>
+        <a mat-list-item routerLink="/holiday/list" routerLinkActive="link-active">
+          <mat-icon matListIcon>date_range</mat-icon>
           <p matLine>Lista de feriados</p>
         </a>
       </mat-nav-list>

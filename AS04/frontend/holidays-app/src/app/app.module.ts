@@ -6,7 +6,8 @@ import {AppComponent} from './app.component';
 import {
   MatButtonModule,
   MatCardModule,
-  MatIconModule,
+  MatFormFieldModule,
+  MatIconModule, MatInputModule,
   MatListModule,
   MatPaginatorModule,
   MatProgressBarModule,
@@ -21,17 +22,21 @@ import {HolidayListComponent} from './holiday/holiday-list/holiday-list.componen
 import {HolidayCreateComponent} from './holiday/holiday-create/holiday-create.component';
 import {HttpClientModule} from "@angular/common/http";
 import {ApiModule, Configuration} from "./api-client";
+import {AppliedHolidayListComponent} from './applied-holiday/applied-holiday-list/applied-holiday-list.component';
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
     AppComponent,
     HolidayListComponent,
-    HolidayCreateComponent
+    HolidayCreateComponent,
+    AppliedHolidayListComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    FormsModule,
 
     BrowserAnimationsModule,
 
@@ -46,6 +51,8 @@ import {ApiModule, Configuration} from "./api-client";
     MatProgressBarModule,
     MatPaginatorModule,
     MatSortModule,
+    MatFormFieldModule,
+    MatInputModule,
 
     ApiModule.forRoot(() => {
       return new Configuration();

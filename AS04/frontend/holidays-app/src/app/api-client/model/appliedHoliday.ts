@@ -11,7 +11,7 @@
  */
 
 
-export interface HolidayDTO { 
+export interface AppliedHoliday { 
     city?: string;
     country?: string;
     date?: string;

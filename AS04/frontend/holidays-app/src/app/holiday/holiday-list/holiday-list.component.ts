@@ -4,7 +4,7 @@ import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {merge, of as observableOf} from 'rxjs';
 import {catchError, map, startWith, switchMap} from 'rxjs/operators';
-import {HolidayControllerService, HolidayDTO} from "../../api-client";
+import {HolidayControllerService, MonthDayHoliday} from "../../api-client";
 
 @Component({
   selector: 'app-holiday-list',
@@ -13,11 +13,10 @@ import {HolidayControllerService, HolidayDTO} from "../../api-client";
 })
 export class HolidayListComponent implements AfterViewInit {
   displayedColumns: string[] = ['date', 'description'];
-  data: HolidayDTO[] = [];
+  data: MonthDayHoliday[] = [];
 
   resultsLength = 0;
   isLoadingResults = true;
-  isRateLimitReached = false;
 
   @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: false}) sort: MatSort;
@@ -26,32 +25,23 @@ export class HolidayListComponent implements AfterViewInit {
   }
 
   ngAfterViewInit() {
-    this._holidayControllerService.getHolidaysUsingGET().toPromise().then((a) => {
-      console.log(a);
-    });
-
-    // If the user changes the sort order, reset back to the first page.
     this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 0);
 
     merge(this.sort.sortChange, this.paginator.page)
       .pipe(
         startWith({}),
-        switchMap(() => {
+        switchMap((page) => {
           this.isLoadingResults = true;
-          return this._holidayControllerService.getHolidaysUsingGET();
+          return this._holidayControllerService.listMonthDayHolidaysUsingGET(this.paginator.pageIndex, this.paginator.pageSize);
         }),
         map(data => {
-          // Flip flag to show that loading has finished.
           this.isLoadingResults = false;
-          this.isRateLimitReached = false;
-          this.resultsLength = 100;
+          this.resultsLength = data.total;
 
           return data.holidays;
         }),
         catchError(() => {
           this.isLoadingResults = false;
-          // Catch if the GitHub API has reached its rate limit. Return empty data.
-          this.isRateLimitReached = true;
           return observableOf([]);
         })
       ).subscribe(data => this.data = data);

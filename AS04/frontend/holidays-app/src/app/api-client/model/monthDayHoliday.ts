@@ -9,10 +9,14 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-import { HolidayDTO } from './holidayDTO';
 
 
-export interface HolidaysDTO { 
-    holidays?: Array<HolidayDTO>;
-    year?: number;
+export interface MonthDayHoliday { 
+    city?: string;
+    country?: string;
+    dayOfMonth?: number;
+    description?: string;
+    id?: number;
+    month?: number;
+    state?: string;
 }

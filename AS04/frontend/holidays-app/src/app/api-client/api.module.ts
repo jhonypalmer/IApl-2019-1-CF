@@ -3,6 +3,7 @@ import { Configuration } from './configuration';
 import { HttpClient } from '@angular/common/http';
 
 
+import { AppliedHolidayControllerService } from './api/appliedHolidayController.service';
 import { HolidayControllerService } from './api/holidayController.service';
 
 @NgModule({
@@ -10,6 +11,7 @@ import { HolidayControllerService } from './api/holidayController.service';
   declarations: [],
   exports:      [],
   providers: [
+    AppliedHolidayControllerService,
     HolidayControllerService ]
 })
 export class ApiModule {

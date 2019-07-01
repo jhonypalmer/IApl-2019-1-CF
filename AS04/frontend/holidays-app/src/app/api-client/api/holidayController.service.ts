@@ -18,7 +18,8 @@ import { CustomHttpUrlEncodingCodec }                        from '../encoder';
 
 import { Observable }                                        from 'rxjs/Observable';
 
-import { HolidaysDTO } from '../model/holidaysDTO';
+import { MonthDayHoliday } from '../model/monthDayHoliday';
+import { MonthDayHolidayResultList } from '../model/monthDayHolidayResultList';
 
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
 import { Configuration }                                     from '../configuration';
@@ -63,9 +64,9 @@ export class HolidayControllerService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getHolidayUsingGET(id: number, observe?: 'body', reportProgress?: boolean): Observable<HolidaysDTO>;
-    public getHolidayUsingGET(id: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<HolidaysDTO>>;
-    public getHolidayUsingGET(id: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<HolidaysDTO>>;
+    public getHolidayUsingGET(id: number, observe?: 'body', reportProgress?: boolean): Observable<MonthDayHoliday>;
+    public getHolidayUsingGET(id: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<MonthDayHoliday>>;
+    public getHolidayUsingGET(id: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<MonthDayHoliday>>;
     public getHolidayUsingGET(id: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         if (id === null || id === undefined) {
@@ -89,7 +90,7 @@ export class HolidayControllerService {
         const consumes: string[] = [
         ];
 
-        return this.httpClient.get<HolidaysDTO>(`${this.basePath}/holiday/${encodeURIComponent(String(id))}`,
+        return this.httpClient.get<MonthDayHoliday>(`${this.basePath}/holiday/${encodeURIComponent(String(id))}`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
@@ -100,15 +101,27 @@ export class HolidayControllerService {
     }
 
     /**
-     * getHolidays
+     * listMonthDayHolidays
      * 
+     * @param page page
+     * @param size size
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getHolidaysUsingGET(observe?: 'body', reportProgress?: boolean): Observable<HolidaysDTO>;
-    public getHolidaysUsingGET(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<HolidaysDTO>>;
-    public getHolidaysUsingGET(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<HolidaysDTO>>;
-    public getHolidaysUsingGET(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public listMonthDayHolidaysUsingGET(page?: number, size?: number, observe?: 'body', reportProgress?: boolean): Observable<MonthDayHolidayResultList>;
+    public listMonthDayHolidaysUsingGET(page?: number, size?: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<MonthDayHolidayResultList>>;
+    public listMonthDayHolidaysUsingGET(page?: number, size?: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<MonthDayHolidayResultList>>;
+    public listMonthDayHolidaysUsingGET(page?: number, size?: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+
+
+        let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
+        if (page !== undefined && page !== null) {
+            queryParameters = queryParameters.set('page', <any>page);
+        }
+        if (size !== undefined && size !== null) {
+            queryParameters = queryParameters.set('size', <any>size);
+        }
 
         let headers = this.defaultHeaders;
 
@@ -127,8 +140,9 @@ export class HolidayControllerService {
         const consumes: string[] = [
         ];
 
-        return this.httpClient.get<HolidaysDTO>(`${this.basePath}/holiday`,
+        return this.httpClient.get<MonthDayHolidayResultList>(`${this.basePath}/holiday`,
             {
+                params: queryParameters,
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
                 observe: observe,
@@ -138,19 +152,19 @@ export class HolidayControllerService {
     }
 
     /**
-     * saveHolidays
+     * saveHoliday
      * 
-     * @param holidaysDTO holidaysDTO
+     * @param monthDayHoliday monthDayHoliday
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public saveHolidaysUsingPOST(holidaysDTO: HolidaysDTO, observe?: 'body', reportProgress?: boolean): Observable<HolidaysDTO>;
-    public saveHolidaysUsingPOST(holidaysDTO: HolidaysDTO, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<HolidaysDTO>>;
-    public saveHolidaysUsingPOST(holidaysDTO: HolidaysDTO, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<HolidaysDTO>>;
-    public saveHolidaysUsingPOST(holidaysDTO: HolidaysDTO, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public saveHolidayUsingPOST(monthDayHoliday: MonthDayHoliday, observe?: 'body', reportProgress?: boolean): Observable<MonthDayHoliday>;
+    public saveHolidayUsingPOST(monthDayHoliday: MonthDayHoliday, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<MonthDayHoliday>>;
+    public saveHolidayUsingPOST(monthDayHoliday: MonthDayHoliday, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<MonthDayHoliday>>;
+    public saveHolidayUsingPOST(monthDayHoliday: MonthDayHoliday, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
-        if (holidaysDTO === null || holidaysDTO === undefined) {
-            throw new Error('Required parameter holidaysDTO was null or undefined when calling saveHolidaysUsingPOST.');
+        if (monthDayHoliday === null || monthDayHoliday === undefined) {
+            throw new Error('Required parameter monthDayHoliday was null or undefined when calling saveHolidayUsingPOST.');
         }
 
         let headers = this.defaultHeaders;
@@ -175,8 +189,57 @@ export class HolidayControllerService {
             headers = headers.set('Content-Type', httpContentTypeSelected);
         }
 
-        return this.httpClient.post<HolidaysDTO>(`${this.basePath}/holiday`,
-            holidaysDTO,
+        return this.httpClient.post<MonthDayHoliday>(`${this.basePath}/holiday`,
+            monthDayHoliday,
+            {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * updateHoliday
+     * 
+     * @param monthDayHoliday monthDayHoliday
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public updateHolidayUsingPUT(monthDayHoliday: MonthDayHoliday, observe?: 'body', reportProgress?: boolean): Observable<MonthDayHoliday>;
+    public updateHolidayUsingPUT(monthDayHoliday: MonthDayHoliday, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<MonthDayHoliday>>;
+    public updateHolidayUsingPUT(monthDayHoliday: MonthDayHoliday, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<MonthDayHoliday>>;
+    public updateHolidayUsingPUT(monthDayHoliday: MonthDayHoliday, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        if (monthDayHoliday === null || monthDayHoliday === undefined) {
+            throw new Error('Required parameter monthDayHoliday was null or undefined when calling updateHolidayUsingPUT.');
+        }
+
+        let headers = this.defaultHeaders;
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            '*/*'
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+            'application/xml',
+            'application/fixedposition',
+            'application/json'
+        ];
+        const httpContentTypeSelected: string | undefined = this.configuration.selectHeaderContentType(consumes);
+        if (httpContentTypeSelected != undefined) {
+            headers = headers.set('Content-Type', httpContentTypeSelected);
+        }
+
+        return this.httpClient.put<MonthDayHoliday>(`${this.basePath}/holiday`,
+            monthDayHoliday,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
