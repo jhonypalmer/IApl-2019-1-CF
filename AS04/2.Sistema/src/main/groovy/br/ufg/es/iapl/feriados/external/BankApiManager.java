@@ -17,17 +17,17 @@ import java.util.List;
 
 public class BankApiManager {
 
-    public static BankApiManager bankApiManager = new BankApiManager();
+//    public static BankApiManager bankApiManager = new BankApiManager();
     public static String accessToken = null;
 
-    public static void main(String[] args) {
-        try {
-            bankApiManager.listAllAccounts();
-            bankApiManager.account("1");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+//    public static void main(String[] args) {
+//        try {
+//            bankApiManager.listAllAccounts();
+//            bankApiManager.account("1");
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//    }
 
     /**
      * @return the Token to be used in future requests
@@ -42,7 +42,7 @@ public class BankApiManager {
 
     public List<Account> listAllAccounts() {
         if (accessToken == null) {
-            accessToken = bankApiManager.login().getValue().token;
+            accessToken = login().getValue().token;
         }
 
         RestTemplate restTemplate = new RestTemplate();
@@ -55,7 +55,7 @@ public class BankApiManager {
 
     public Account account(String id) {
         if (accessToken == null) {
-            accessToken = bankApiManager.login().getValue().token;
+            accessToken =login().getValue().token;
         }
 
         RestTemplate restTemplate = new RestTemplate();
