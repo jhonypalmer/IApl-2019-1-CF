@@ -5,6 +5,7 @@ import br.ufg.es.iapl.feriados.model.region.Country
 import groovy.transform.CompileStatic
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.data.jpa.repository.Query
+import org.springframework.data.repository.query.Param
 import org.springframework.stereotype.Repository
 
 @Repository
@@ -17,5 +18,8 @@ interface CityRepository extends JpaRepository<City, Long> {
 
 	@Query(value = "SELECT ci FROM City ci LEFT JOIN FETCH ci.state s LEFT JOIN FETCH ci.country c")
 	List<City> findAllFetch();
+
+	@Query(value = "SELECT ci FROM City ci LEFT JOIN FETCH ci.state s LEFT JOIN FETCH ci.country c WHERE s.name = :state")
+	List<City> findAllByStateFetch(@Param("state") String state);
 
 }
