@@ -14,12 +14,13 @@ Aplicação desenvolvida para pratica da materia de Integraçao de Aplicações,
 * [**2. Sistema**](AS04/1.Sistema)
 * **3. Tecnologias Utilizadas**
   * **Linguagem de Programação:** 
-      * Back-end: [Groovy](https://groovy-lang.org/)
-      * Front-end: [Angular](https://angular.io/)
+      * Back-end: [Groovy](https://groovy-lang.org/) e Spring Boot
+      * Front-end: [Angular](https://angular.io/) e [Typescript](https://www.typescriptlang.org/)
   * **Banco de Dados:**
     * [Postgres](https://www.postgresql.org/)
   * **Framework:**
     * [Spring Boot](https://spring.io/projects/spring-boot)
+    * Angular
   * **Gerenciador de Dependências:**
     * [Gradle](https://gradle.org/)
   * **Hospedagem da Aplicação:**
