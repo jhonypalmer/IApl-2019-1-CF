@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*
 @CompileStatic
 @RestController
 @RequestMapping('holiday')
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "*")
 class HolidayController {
 
 	private static final String APPLICATION_FIXED_POSITION = "application/fixedPosition"
@@ -40,14 +40,14 @@ class HolidayController {
 		return holidayService.findHolidayById(id)
 	}
 
-	@PostMapping(consumes = [MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE, APPLICATION_FIXED_POSITION])
-	ResponseEntity<MonthDayHoliday> saveHoliday(@RequestBody MonthDayHoliday monthDayHoliday) {
+	@PostMapping(consumes = [MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE, APPLICATION_FIXED_POSITION], produces = [MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE, APPLICATION_FIXED_POSITION])
+	MonthDayHoliday saveHoliday(@RequestBody MonthDayHoliday monthDayHoliday) {
 		MonthDayHoliday saveHoliday = holidayService.saveHoliday(monthDayHoliday)
 
-		return ResponseEntity.ok(saveHoliday)
+		return saveHoliday
 	}
 
-	@PutMapping(consumes = [MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE, APPLICATION_FIXED_POSITION])
+	@PutMapping(consumes = [MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE, APPLICATION_FIXED_POSITION], produces = [MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE, APPLICATION_FIXED_POSITION])
 	ResponseEntity<MonthDayHoliday> updateHoliday(@RequestBody MonthDayHoliday monthDayHoliday) {
 		holidayService.updateHoliday(monthDayHoliday)
 

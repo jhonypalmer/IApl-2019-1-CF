@@ -74,9 +74,11 @@ class HolidayService {
 	}
 
 	private MonthDayHoliday convertHolidayToMonthDayHoliday(Holiday holiday) {
-		MonthDayHoliday holidayDTO = new MonthDayHoliday()
+		MonthDayHoliday holidayDTO = new MonthDayHoliday(
+				id: holiday.id,
+				description: holiday.description,
+		)
 
-		holidayDTO.description = holiday.getDescription()
 		DateDefinition definition = holiday.dateDefinition
 		if (definition instanceof MonthDayHolidayDate) {
 			holidayDTO.month = definition.month.value

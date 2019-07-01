@@ -8,21 +8,20 @@ import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("state")
+@CrossOrigin(origins = "*")
 class StateController {
 
-    @Autowired
-    private StateRepository stateRepository
+	@Autowired
+	private StateRepository stateRepository
 
-    @CrossOrigin(origins = "http://localhost:4200")
-    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    List<State> getStates() {
-        return stateRepository.findAllFetch()
-    }
+	@GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+	List<State> getStates() {
+		return stateRepository.findAllFetch()
+	}
 
-    @CrossOrigin(origins = "http://localhost:4200")
-    @GetMapping(value = "/{country}", produces = MediaType.APPLICATION_JSON_VALUE)
-    List<State> getStatesByCountry(@PathVariable String country) {
-        return stateRepository.findAllByCountryFetch(country)
-    }
+	@GetMapping(value = "/{country}", produces = MediaType.APPLICATION_JSON_VALUE)
+	List<State> getStatesByCountry(@PathVariable String country) {
+		return stateRepository.findAllByCountryFetch(country)
+	}
 
 }

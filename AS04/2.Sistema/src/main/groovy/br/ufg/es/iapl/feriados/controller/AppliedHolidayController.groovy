@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*
 @CompileStatic
 @RestController
 @RequestMapping("appliedHoliday")
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "*")
 class AppliedHolidayController {
 
 	private static final String APPLICATION_FIXED_POSITION = "application/fixedPosition"
