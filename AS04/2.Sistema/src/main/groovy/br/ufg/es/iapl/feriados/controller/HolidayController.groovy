@@ -17,6 +17,7 @@ class HolidayController {
 	@Autowired
 	private HolidayService holidayService
 
+	@CrossOrigin(origins = "http://localhost:4200")
 	@GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
 	HolidaysDTO getHolidays() {
 		return holidayService.findAllHolidays(Year.now().value)

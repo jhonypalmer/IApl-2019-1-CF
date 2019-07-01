@@ -3,10 +3,24 @@ import {NgModule} from '@angular/core';
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
-import {MatButtonModule, MatIconModule, MatListModule, MatSidenavModule, MatToolbarModule, MatTooltipModule} from "@angular/material";
+import {
+  MatButtonModule,
+  MatCardModule,
+  MatIconModule,
+  MatListModule,
+  MatPaginatorModule,
+  MatProgressBarModule,
+  MatSidenavModule,
+  MatSortModule,
+  MatTableModule,
+  MatToolbarModule,
+  MatTooltipModule
+} from "@angular/material";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-import { HolidayListComponent } from './holiday/holiday-list/holiday-list.component';
-import { HolidayCreateComponent } from './holiday/holiday-create/holiday-create.component';
+import {HolidayListComponent} from './holiday/holiday-list/holiday-list.component';
+import {HolidayCreateComponent} from './holiday/holiday-create/holiday-create.component';
+import {HttpClientModule} from "@angular/common/http";
+import {ApiModule, Configuration} from "./api-client";
 
 @NgModule({
   declarations: [
@@ -17,15 +31,25 @@ import { HolidayCreateComponent } from './holiday/holiday-create/holiday-create.
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
 
     BrowserAnimationsModule,
 
     MatSidenavModule,
     MatButtonModule,
+    MatCardModule,
     MatToolbarModule,
     MatIconModule,
     MatListModule,
     MatTooltipModule,
+    MatTableModule,
+    MatProgressBarModule,
+    MatPaginatorModule,
+    MatSortModule,
+
+    ApiModule.forRoot(() => {
+      return new Configuration();
+    })
 
   ],
   providers: [],
