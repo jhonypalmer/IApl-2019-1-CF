@@ -1,7 +1,7 @@
 package br.ufg.es.iapl.feriados.fixed_position
 
-import br.ufg.es.iapl.feriados.dto.HolidaysDTO
-import br.ufg.es.iapl.feriados.service.HolidayService
+import br.ufg.es.iapl.feriados.dto.AppliedHolidayResultList
+import br.ufg.es.iapl.feriados.service.AppliedHolidayService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.test.context.ActiveProfiles
@@ -14,11 +14,11 @@ import spock.lang.Specification
 class FixedPositionWriterSpec extends Specification {
 
 	@Autowired
-	HolidayService holidayService
+	AppliedHolidayService holidayService
 
 	def 'Deve criar o arquivo posicional corretamente'() {
 		setup:
-		HolidaysDTO holidaysDTO = holidayService.findAllHolidays(2019)
+		AppliedHolidayResultList holidaysDTO = holidayService.listAppliedHolidayByYear(2019)
 		FixedPositionWriter fixedPositionWriter = new FixedPositionWriter(holidaysDTO)
 
 		when:

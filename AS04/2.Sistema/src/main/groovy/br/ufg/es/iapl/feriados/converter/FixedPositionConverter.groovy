@@ -1,7 +1,7 @@
 package br.ufg.es.iapl.feriados.converter
 
-import br.ufg.es.iapl.feriados.dto.HolidayDTO
-import br.ufg.es.iapl.feriados.dto.HolidaysDTO
+import br.ufg.es.iapl.feriados.dto.AppliedHoliday
+import br.ufg.es.iapl.feriados.dto.AppliedHolidayResultList
 import org.apache.commons.lang3.StringUtils
 import org.apache.commons.lang3.math.NumberUtils
 import org.springframework.http.HttpInputMessage
@@ -17,7 +17,7 @@ import java.time.LocalDate
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
 
-class FixedPositionConverter extends AbstractHttpMessageConverter<HolidaysDTO> {
+class FixedPositionConverter extends AbstractHttpMessageConverter<AppliedHolidayResultList> {
 
 	private static final SimpleDateFormat SIMPLE_DATE_FORMAT = new SimpleDateFormat("dd-MM-yyyy", new Locale("pt", "BR"))
 
@@ -27,11 +27,11 @@ class FixedPositionConverter extends AbstractHttpMessageConverter<HolidaysDTO> {
 
 	@Override
 	protected boolean supports(Class<?> clazz) {
-		return HolidaysDTO.class.isAssignableFrom(clazz)
+		return AppliedHolidayResultList.class.isAssignableFrom(clazz)
 	}
 
 	@Override
-	protected HolidaysDTO readInternal(Class<? extends HolidaysDTO> clazz, HttpInputMessage inputMessage) throws IOException, HttpMessageNotReadableException {
+	protected AppliedHolidayResultList readInternal(Class<? extends AppliedHolidayResultList> clazz, HttpInputMessage inputMessage) throws IOException, HttpMessageNotReadableException {
 		String requestBody = toString(inputMessage.getBody())
 		int i = requestBody.indexOf("\n")
 		if (i == -1) {
@@ -41,8 +41,8 @@ class FixedPositionConverter extends AbstractHttpMessageConverter<HolidaysDTO> {
 		String header = requestBody.substring(0, i).trim()
 		String content = requestBody.substring(i).trim()
 
-		HolidaysDTO holidaysDTO = new HolidaysDTO()
-		List<HolidayDTO> holidays = new ArrayList<>()
+		AppliedHolidayResultList holidaysDTO = new AppliedHolidayResultList()
+		List<AppliedHoliday> holidays = new ArrayList<>()
 
 		String[] linhas = content.split("\n")
 		for (String linha : linhas) {
@@ -54,7 +54,7 @@ class FixedPositionConverter extends AbstractHttpMessageConverter<HolidaysDTO> {
 					throw new InvalidParameterException("A quantidade informada no rodapé diverge da quantidade de feriados informados.")
 				}
 			} else {
-				HolidayDTO holidayDTO = new HolidayDTO()
+				AppliedHoliday holidayDTO = new AppliedHoliday()
 
 				//description
 				String description = linha.substring(0, 59)
@@ -86,7 +86,7 @@ class FixedPositionConverter extends AbstractHttpMessageConverter<HolidaysDTO> {
 	}
 
 	@Override
-	protected void writeInternal(HolidaysDTO holidaysDTO, HttpOutputMessage outputMessage) throws IOException, HttpMessageNotWritableException {
+	protected void writeInternal(AppliedHolidayResultList holidaysDTO, HttpOutputMessage outputMessage) throws IOException, HttpMessageNotWritableException {
 		try {
 			OutputStream outputStream = outputMessage.getBody()
 			String body = convertHolidayToLayoutFixedPosition(holidaysDTO)
@@ -101,7 +101,7 @@ class FixedPositionConverter extends AbstractHttpMessageConverter<HolidaysDTO> {
 		return scanner.useDelimiter("\\A").next()
 	}
 
-	private String convertHolidayToLayoutFixedPosition(HolidaysDTO holidaysDTO) {
+	private String convertHolidayToLayoutFixedPosition(AppliedHolidayResultList holidaysDTO) {
 		StringBuilder sb = new StringBuilder()
 		sb.append(createHeader(holidaysDTO))
 		sb.append(createDetail(holidaysDTO))
@@ -109,7 +109,7 @@ class FixedPositionConverter extends AbstractHttpMessageConverter<HolidaysDTO> {
 		return sb.toString()
 	}
 
-	private String createHeader(HolidaysDTO holidaysDTO) {
+	private String createHeader(AppliedHolidayResultList holidaysDTO) {
 		StringBuilder sb = new StringBuilder()
 		sb.append(StringUtils.rightPad("Holidays", 8, " "))
 		sb.append(StringUtils.rightPad(holidaysDTO.year.toString(), 10, " "))
@@ -118,10 +118,10 @@ class FixedPositionConverter extends AbstractHttpMessageConverter<HolidaysDTO> {
 		return sb.toString()
 	}
 
-	private String createDetail(HolidaysDTO holidaysDTO) {
+	private String createDetail(AppliedHolidayResultList holidaysDTO) {
 		StringBuilder sb = new StringBuilder()
 
-		for (HolidayDTO holidayDTO : holidaysDTO.getHolidays()) {
+		for (AppliedHoliday holidayDTO : holidaysDTO.getHolidays()) {
 			sb.append(StringUtils.rightPad(holidayDTO.getDescription(), 60, " "))
 
 			Date date = Date.from(holidayDTO.getDate().atStartOfDay(ZoneId.systemDefault()).toInstant())
@@ -136,7 +136,7 @@ class FixedPositionConverter extends AbstractHttpMessageConverter<HolidaysDTO> {
 		return sb.toString()
 	}
 
-	private String createTrailler(HolidaysDTO holidaysDTO) {
+	private String createTrailler(AppliedHolidayResultList holidaysDTO) {
 		StringBuilder sb = new StringBuilder()
 		sb.append(StringUtils.rightPad(String.valueOf(holidaysDTO.getHolidays().size()), 10, " "))
 		return sb.toString()

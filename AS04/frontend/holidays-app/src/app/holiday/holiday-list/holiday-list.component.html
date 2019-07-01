@@ -2,9 +2,6 @@
 
 <mat-card style="padding: 0">
   <mat-progress-bar [mode]="isLoadingResults ? 'indeterminate': 'determinate'"></mat-progress-bar>
-  <div class="example-rate-limit-reached" *ngIf="isRateLimitReached">
-    GitHub's API rate limit has been reached. It will be reset in one minute.
-  </div>
 
   <table mat-table [dataSource]="data" matSort matSortActive="created" matSortDisableClear matSortDirection="desc" style="width: 100%">
     <ng-container matColumnDef="date">

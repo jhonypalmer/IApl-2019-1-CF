@@ -1,9 +1,11 @@
 package br.ufg.es.iapl.feriados.service
 
-import br.ufg.es.iapl.feriados.dto.HolidayDTO
-import br.ufg.es.iapl.feriados.dto.HolidaysDTO
+
+import br.ufg.es.iapl.feriados.dto.MonthDayHoliday
+import br.ufg.es.iapl.feriados.dto.MonthDayHolidayResultList
 import br.ufg.es.iapl.feriados.exception.ResourceNotFoundException
 import br.ufg.es.iapl.feriados.model.Holiday
+import br.ufg.es.iapl.feriados.model.definition.DateDefinition
 import br.ufg.es.iapl.feriados.model.definition.MonthDayHolidayDate
 import br.ufg.es.iapl.feriados.model.region.City
 import br.ufg.es.iapl.feriados.model.region.Country
@@ -13,12 +15,16 @@ import br.ufg.es.iapl.feriados.repository.CityRepository
 import br.ufg.es.iapl.feriados.repository.CountryRepository
 import br.ufg.es.iapl.feriados.repository.HolidayRepository
 import br.ufg.es.iapl.feriados.repository.StateRepository
+import groovy.transform.CompileStatic
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.data.domain.Page
+import org.springframework.data.domain.Pageable
 import org.springframework.stereotype.Service
 
-import java.time.Year
+import java.time.Month
 
 @Service
+@CompileStatic
 class HolidayService {
 
 	@Autowired
@@ -33,29 +39,27 @@ class HolidayService {
 	@Autowired
 	private CountryRepository countryRepository
 
-	HolidaysDTO findAllHolidays(Integer year) {
-		HolidaysDTO holidaysDTO = new HolidaysDTO(year: year)
-		List<HolidayDTO> holidayDTOS = new ArrayList<>()
+	MonthDayHolidayResultList listHolidays(Pageable pagable) {
+		MonthDayHolidayResultList holidayResultList = new MonthDayHolidayResultList()
+		List<MonthDayHoliday> holidayList = new ArrayList<>()
 
-		List<Holiday> holidays = holidayRepository.findAll()
-		holidays.forEach({ holiday -> holidayDTOS.add(convertHolidayToDTO(holiday, year)) })
+		Page<Holiday> holidays = holidayRepository.findAll(pagable)
+		holidays.forEach({ holiday -> holidayList.add(convertHolidayToMonthDayHoliday(holiday)) })
 
-		holidaysDTO.setHolidays(holidayDTOS)
+		holidayResultList.setHolidays(holidayList)
+		holidayResultList.total = holidays.totalElements
 
-		return holidaysDTO
+		return holidayResultList
 	}
 
-	HolidaysDTO findHolidayById(Long id) {
-		HolidaysDTO holidaysDTO = new HolidaysDTO()
+	MonthDayHoliday findHolidayById(Long id) {
 		Holiday holiday = findById(id)
 
-		holidaysDTO.setHolidays(Arrays.asList(convertHolidayToDTO(holiday, Year.now().value)))
-
-		return holidaysDTO
+		return convertHolidayToMonthDayHoliday(holiday)
 	}
 
 	void deleteHolidayById(Long id) {
-		Holiday holiday = findById(id)
+		findById(id)
 		holidayRepository.deleteById(id)
 	}
 
@@ -69,15 +73,15 @@ class HolidayService {
 		return holiday.get()
 	}
 
-	private HolidayDTO convertHolidayToDTO(Holiday holiday, int year) {
-		HolidayDTO holidayDTO = new HolidayDTO()
+	private MonthDayHoliday convertHolidayToMonthDayHoliday(Holiday holiday) {
+		MonthDayHoliday holidayDTO = new MonthDayHoliday()
 
-		if (holiday.getId() != null) {
-			holidayDTO.setId(holiday.getId())
+		holidayDTO.description = holiday.getDescription()
+		DateDefinition definition = holiday.dateDefinition
+		if (definition instanceof MonthDayHolidayDate) {
+			holidayDTO.month = definition.month.value
+			holidayDTO.dayOfMonth = definition.dayOfMonth
 		}
-
-		holidayDTO.setDescription(holiday.getDescription())
-		holidayDTO.setDate(holiday.getDateDefinition().getDate(year))
 
 		Optional<City> city = cityRepository.findById(holiday.getRegion().getId())
 		Optional<State> state = stateRepository.findById(holiday.getRegion().getId())
@@ -97,62 +101,59 @@ class HolidayService {
 		return holidayDTO
 	}
 
-	void udpateHolidays(HolidaysDTO holidaysDTO) {
-		for (HolidayDTO holidayDTO : holidaysDTO.getHolidays()) {
-			Holiday holiday = findById(holidayDTO.getId())
-			holiday.setDescription(holidayDTO.getDescription())
+	MonthDayHoliday saveHoliday(MonthDayHoliday holidayDTO) {
+		MonthDayHolidayDate monthDayHolidayDate = new MonthDayHolidayDate(
+				dayOfMonth: holidayDTO.dayOfMonth,
+				month: Month.of(holidayDTO.month)
+		)
 
-			MonthDayHolidayDate monthDayHolidayDate = new MonthDayHolidayDate()
-			monthDayHolidayDate.setDayOfMonth(holidayDTO.getDate().getDayOfMonth())
-			monthDayHolidayDate.setMonth(holidayDTO.getDate().getMonth())
-			holiday.setDateDefinition(monthDayHolidayDate)
-
-			Region region = null
-
-			if (holidayDTO.getCity() != null && !holidayDTO.getCity().isEmpty()) {
-				region = cityRepository.findByName(holidayDTO.getCity())
-			} else if (holidayDTO.getState() != null && !holidayDTO.getState().isEmpty()) {
-				region = stateRepository.findByName(holidayDTO.getState())
-			} else {
-				region = countryRepository.findByName(holidayDTO.getCountry())
-			}
-
-			holiday.setRegion(region)
-			holidayRepository.save(holiday)
+		Region region
+		if (holidayDTO.city) {
+			region = cityRepository.findByName(holidayDTO.getCity())
+		} else if (holidayDTO.state) {
+			region = stateRepository.findByName(holidayDTO.state)
+		} else {
+			region = countryRepository.findByName(holidayDTO.getCountry())
 		}
 
+		Holiday holiday = new Holiday(
+				description: holidayDTO.description,
+				dateDefinition: monthDayHolidayDate,
+				region: region
+		)
+
+		Holiday savedHoliday = holidayRepository.save(holiday)
+
+		return convertHolidayToMonthDayHoliday(savedHoliday)
 	}
 
-	HolidaysDTO saveHolidays(HolidaysDTO holidaysDTO) {
-		HolidaysDTO holidaysDTOSave = new HolidaysDTO()
-		List<HolidayDTO> listholidaysSave = new ArrayList<>();
-		for (HolidayDTO holidayDTO : holidaysDTO.getHolidays()) {
-			Holiday holiday = new Holiday()
-			holiday.setDescription(holidayDTO.getDescription())
+	void updateHoliday(MonthDayHoliday holidayDTO) {
+		MonthDayHolidayDate monthDayHolidayDate = new MonthDayHolidayDate(
+				dayOfMonth: holidayDTO.dayOfMonth,
+				month: Month.of(holidayDTO.month)
+		)
 
-			MonthDayHolidayDate monthDayHolidayDate = new MonthDayHolidayDate()
-			monthDayHolidayDate.setDayOfMonth(holidayDTO.getDate().getDayOfMonth())
-			monthDayHolidayDate.setMonth(holidayDTO.getDate().getMonth())
-			holiday.setDateDefinition(monthDayHolidayDate)
-
-			Region region = null
-
-			if (holidayDTO.getCity() != null && !holidayDTO.getCity().isEmpty()) {
-				region = cityRepository.findByName(holidayDTO.getCity())
-			} else if (holidayDTO.getState() != null && !holidayDTO.getState().isEmpty()) {
-				region = stateRepository.findByName(holidayDTO.getState())
-			} else {
-				region = countryRepository.findByName(holidayDTO.getCountry())
-			}
-
-			holiday.setRegion(region)
-			Holiday holidaySave = holidayRepository.save(holiday)
-
-			listholidaysSave.add(convertHolidayToDTO(holidaySave, Year.now().value))
+		Region region
+		if (holidayDTO.city) {
+			region = cityRepository.findByName(holidayDTO.city)
+		} else if (holidayDTO.state) {
+			region = stateRepository.findByName(holidayDTO.state)
+		} else {
+			region = countryRepository.findByName(holidayDTO.country)
 		}
-		holidaysDTOSave.setHolidays(listholidaysSave)
-		return holidaysDTOSave;
 
+		Optional<Holiday> holidayQuery = holidayRepository.findById(holidayDTO.id)
+
+		if (!holidayQuery.isPresent()) {
+			throw new ResourceNotFoundException("No such holiday")
+		}
+
+		Holiday holiday = holidayQuery.get()
+		holiday.description = holidayDTO.description
+		holiday.dateDefinition = monthDayHolidayDate
+		holiday.region = region
+
+		holidayRepository.save(holiday)
 	}
 
 }

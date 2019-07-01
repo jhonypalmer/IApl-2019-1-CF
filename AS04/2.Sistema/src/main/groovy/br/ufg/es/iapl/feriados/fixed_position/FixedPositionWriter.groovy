@@ -1,7 +1,7 @@
 package br.ufg.es.iapl.feriados.fixed_position
 
-import br.ufg.es.iapl.feriados.dto.HolidayDTO
-import br.ufg.es.iapl.feriados.dto.HolidaysDTO
+import br.ufg.es.iapl.feriados.dto.AppliedHoliday
+import br.ufg.es.iapl.feriados.dto.AppliedHolidayResultList
 import groovy.transform.CompileStatic
 
 import java.time.LocalDate
@@ -10,9 +10,9 @@ import java.time.format.DateTimeFormatter
 @CompileStatic
 class FixedPositionWriter {
 
-	private HolidaysDTO holidaysDTO
+	private AppliedHolidayResultList holidaysDTO
 
-	FixedPositionWriter(HolidaysDTO holidaysDTO) {
+	FixedPositionWriter(AppliedHolidayResultList holidaysDTO) {
 		this.holidaysDTO = holidaysDTO
 	}
 
@@ -38,7 +38,7 @@ class FixedPositionWriter {
 	private String createDetail() {
 		StringBuilder sb = new StringBuilder()
 
-		for (HolidayDTO holidayDTO : holidaysDTO.getHolidays()) {
+		for (AppliedHoliday holidayDTO : holidaysDTO.getHolidays()) {
 			sb.append(holidayDTO.getDescription().padRight(60))
 
 			sb << DATE_FORMATER.format(holidayDTO.date).padRight(10)

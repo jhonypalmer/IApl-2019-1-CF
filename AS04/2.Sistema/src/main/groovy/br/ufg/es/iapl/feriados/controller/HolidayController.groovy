@@ -1,43 +1,57 @@
 package br.ufg.es.iapl.feriados.controller
 
 
-import br.ufg.es.iapl.feriados.dto.HolidaysDTO
+import br.ufg.es.iapl.feriados.dto.MonthDayHoliday
+import br.ufg.es.iapl.feriados.dto.MonthDayHolidayResultList
 import br.ufg.es.iapl.feriados.service.HolidayService
+import groovy.transform.CompileStatic
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.data.domain.PageRequest
+import org.springframework.data.domain.Pageable
 import org.springframework.http.MediaType
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 
-import java.time.Year
-
+@CompileStatic
 @RestController
-@RequestMapping("holiday")
+@RequestMapping('holiday')
+@CrossOrigin(origins = "http://localhost:4200")
 class HolidayController {
+
+	private static final String APPLICATION_FIXED_POSITION = "application/fixedPosition"
 
 	@Autowired
 	private HolidayService holidayService
 
-	@CrossOrigin(origins = "http://localhost:4200")
-	@GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-	HolidaysDTO getHolidays() {
-		return holidayService.findAllHolidays(Year.now().value)
+	@GetMapping(produces = [MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE, APPLICATION_FIXED_POSITION])
+	MonthDayHolidayResultList listMonthDayHolidays(
+			@RequestParam(required = false, defaultValue = '0') Integer page,
+			@RequestParam(required = false, defaultValue = '20') Integer size
+	) {
+		page = page ?: 0
+		size = Integer.min(size, 50)
+		Pageable pageable = PageRequest.of(page, size)
+
+		return holidayService.listHolidays(pageable)
 	}
 
-	@GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-	HolidaysDTO getHoliday(@PathVariable Long id) {
+	@GetMapping(value = "/{id}", produces = [MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE, APPLICATION_FIXED_POSITION])
+	MonthDayHoliday getHoliday(@PathVariable Long id) {
 		return holidayService.findHolidayById(id)
 	}
 
-	@PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	ResponseEntity<HolidaysDTO> updateHoliday(@RequestBody HolidaysDTO holidaysDTO) {
-		holidayService.udpateHolidays(holidaysDTO)
-		return ResponseEntity.ok(holidaysDTO)
+	@PostMapping(consumes = [MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE, APPLICATION_FIXED_POSITION])
+	ResponseEntity<MonthDayHoliday> saveHoliday(@RequestBody MonthDayHoliday monthDayHoliday) {
+		MonthDayHoliday saveHoliday = holidayService.saveHoliday(monthDayHoliday)
+
+		return ResponseEntity.ok(saveHoliday)
 	}
 
-	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	ResponseEntity<HolidaysDTO> saveHolidays(@RequestBody HolidaysDTO holidaysDTO) {
-		HolidaysDTO holidaysDTOSave = holidayService.saveHolidays(holidaysDTO)
-		return ResponseEntity.ok(holidaysDTOSave)
+	@PutMapping(consumes = [MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE, APPLICATION_FIXED_POSITION])
+	ResponseEntity<MonthDayHoliday> updateHoliday(@RequestBody MonthDayHoliday monthDayHoliday) {
+		holidayService.updateHoliday(monthDayHoliday)
+
+		return ResponseEntity.ok(monthDayHoliday)
 	}
 
 	@DeleteMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
